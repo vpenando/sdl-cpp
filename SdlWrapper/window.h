@@ -1,22 +1,46 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 
-#include <cstdint> // uint32_t
-#include <string>  // std::string
+#include <memory> // std::unique_ptr
+#include <string> // std::string
 
-#include <SDL.h>
+#include <SDL.h>     // SDL_Window, SDL_DestroyWindow
 
-#include "base.h"
+#include "base.h"     // internal::memory::Base
+#include "nullable.h" // internal::Nullable
+#include "rect.h"     // sdl::Rect
+#include "size.h"     // Size
+#include "surface.h"  // sdl::Surface
+#include "vector2.h"  // Vector2
+
 
 namespace sdl{
+  namespace internal{
+    using BaseWindow = Base<SDL_Window, SDL_DestroyWindow>;
+    using Renderer = Base<SDL_Renderer, SDL_DestroyRenderer>;
+  } // namespace sdl::internal
 
-  using BaseWindow = SDL_Base<SDL_Window, SDL_DestroyWindow>;
+  using Screen = Surface;
 
   // SDL_Window wrapper
-  class Window : public BaseWindow{
+  class Window final : public internal::BaseWindow{
+    using flag_t = Uint32;
+    using NullableRect = internal::Nullable<Rect>;
   public:
-    using flag_t = uint32_t;
-    Window(value_type* ptr) : BaseWindow(ptr){}
+    // Ctor
+    using internal::BaseWindow::BaseWindow;
+    Window(std::string const& name, Size const& size, flag_t flags = 0u,
+      Vector2i const& pos = Vector2i{},
+      SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
+    explicit Window(SDL_Window *window, SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
+    Size size() const noexcept;
+    void blit(Surface const& surface, Vector2i const& pos, NullableRect const& opt_rect = internal::NULL_VAL);
+    void update();
+
+  private:
+    Size size_;
+    internal::Renderer renderer_;
+    Screen screen_;
   };
   
 } // namespace sdl

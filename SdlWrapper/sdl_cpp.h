@@ -1,8 +1,9 @@
 #ifndef __SDL_INIT_H__
 #define __SDL_INIT_H__
 
-#include "base.h"
-#include "window.h"
+#include "base.h"        // sdl::Base
+#include "noncopyable.h" // sdl::noncopyable
+#include "window.h"      // sdl::Window
 
 #undef main
 
@@ -17,7 +18,20 @@ namespace sdl{
     constexpr auto EVENTS = SDL_INIT_EVENTS;
     constexpr auto NOPARACHUTE = SDL_INIT_NOPARACHUTE;
     constexpr auto EVERYTHING = SDL_INIT_EVERYTHING;
-  } // namespace std::init
+  } // namespace sdl::init
+
+  namespace renderer{
+    constexpr auto SOFTWARE = SDL_RENDERER_SOFTWARE;
+    constexpr auto ACCELERATED = SDL_RENDERER_ACCELERATED;
+    constexpr auto PRESENTVSYNC = SDL_RENDERER_PRESENTVSYNC;
+    constexpr auto TARGETTEXTURE = SDL_RENDERER_TARGETTEXTURE;
+  } // namespace std::renderer
+
+  class Context : internal::noncopyable{
+  public:
+    Context(unsigned flags = 0);
+    ~Context();
+  };
 
 } // namespace sdl
 

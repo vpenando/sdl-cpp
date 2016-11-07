@@ -69,12 +69,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Doudou\Desktop\Projets\SDL2-devel-2.0.4-VC\SDL2-2.0.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Doudou\Desktop\Projets\SDL2-devel-2.0.4-VC\SDL2-2.0.4\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Doudou\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Doudou\SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Doudou\Desktop\Projets\SDL2-devel-2.0.4-VC\SDL2-2.0.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Doudou\Desktop\Projets\SDL2-devel-2.0.4-VC\SDL2-2.0.4\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Doudou\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Doudou\SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,12 +124,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="base.h" />
+    <ClInclude Include="cache.h" />
+    <ClInclude Include="ecs.h" />
+    <ClInclude Include="noncopyable.h" />
+    <ClInclude Include="nullable.h" />
+    <ClInclude Include="rect.h" />
     <ClInclude Include="sdl_cpp.h" />
+    <ClInclude Include="size.h" />
+    <ClInclude Include="surface.h" />
+    <ClInclude Include="vector2.h" />
     <ClInclude Include="window.h" />
     <ClInclude Include="wrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sdl_cpp.cpp" />
+    <ClCompile Include="surface.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

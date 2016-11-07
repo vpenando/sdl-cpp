@@ -5,36 +5,28 @@
 
 #include "wrapper.h" // memory::Wrapper, memory::Deleter
 
-namespace memory{
+namespace sdl{
+  namespace internal{
 
-  template<class T, Deleter<T> deleter>
-  class Base{
-  public:
-    Base(T* ptr) : wrapper_(ptr){}
-    // For pointer-like use
-    T* operator->() const noexcept;
-    operator T*()   const noexcept;
-  protected:
-    using value_type = T;
-    memory::Wrapper<T, deleter> wrapper_;
-  };
+      template<class T, memory::Deleter<T> deleter>
+      class Base{
+      public:
+        explicit Base(T* ptr) : wrapper_(ptr){}
+        virtual ~Base() = default;
+        // For pointer-like use
+        operator T*() const noexcept;
 
-} // namespace memory
+      protected:
+        memory::Wrapper<T, deleter> wrapper_;
+      };
 
-// Base class for SDL managed resources
-template<class T, memory::Deleter<T> deleter>
-using SDL_Base = memory::Base<T, deleter>;
+  } // namespace sdl::internal
+}// namespace sdl
 
 // Implementation
 
-template<class T, memory::Deleter<T> deleter>
-T* memory::Base<T, deleter>::operator->() const noexcept{
-  assert(wrapper_ && "Null pointer");
-  return wrapper_;
-}
-
-template<class T, memory::Deleter<T> deleter>
-memory::Base<T, deleter>::operator T*() const noexcept{
+template<class T, sdl::internal::memory::Deleter<T> deleter>
+sdl::internal::Base<T, deleter>::operator T*() const noexcept{
   return wrapper_;
 }
 

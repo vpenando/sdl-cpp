@@ -1,54 +1,47 @@
 #ifndef __WRAPPER_H__
 #define __WRAPPER_H__
 
-#include <cassert> // assert
+#include "noncopyable.h" // sdl::noncopyable
 
-namespace memory{
+#include <cassert>   // assert
+#include <memory>    // std::unique_ptr
+#include <stdexcept> // std::runtime_error
 
-  // Alias for default pointers deletion
-  template<class T>
-  using Deleter = void(*)(T*);
+namespace sdl{
+  namespace internal{
+    namespace memory{
 
-  // Raw pointer wrapper (not exactly like std::unique_ptr because of operator T*())
-  template<class T, Deleter<T> deleter>
-  class Wrapper final{
-  public:
-    using value_type = T;
-    // Ctor / dtor
-    Wrapper(T* ptr);
-    ~Wrapper();
-    // Deleted member functions
-    Wrapper(Wrapper const&) = delete;
-    Wrapper& operator=(Wrapper const&) = delete;
-    // For pointer-like use
-    T* operator->() const noexcept; // Access op
-    operator T*()   const noexcept; // Converter Wrapper<T> => T*
+      // Alias for default pointers deletion
+      template<class T>
+      using Deleter = void(*)(T*);
 
-  private:
-    T* ptr_;
-  };
+      // Raw pointer wrapper (not exactly like std::unique_ptr because of operator T*())
+      template<class T, Deleter<T> deleter>
+      class Wrapper final : noncopyable{
+      public:
+        explicit Wrapper(T* ptr);
+        // For pointer-like use
+        operator T*() const noexcept; // Converter Wrapper<T> => T*
 
-} // namespace memory
+      private:
+        std::unique_ptr<T, Deleter<T>> ptr_;
+      };
 
-template<class T, memory::Deleter<T> deleter>
-memory::Wrapper<T, deleter>::Wrapper(T* ptr) : ptr_(ptr){
+    } // namespace sdl::internal::memory
+  } // namespace sdl::internal
+} // namespace sdl
+
+template<class T, sdl::internal::memory::Deleter<T> deleter>
+sdl::internal::memory::Wrapper<T, deleter>::Wrapper(T* ptr) : ptr_(ptr, deleter){
+  if(!ptr){
+    throw std::runtime_error{"Null pointer"};
+  }
 }
 
-template<class T, memory::Deleter<T> deleter>
-memory::Wrapper<T, deleter>::~Wrapper(){
-  deleter(ptr_);
-}
-
-// Access op
-template<class T, memory::Deleter<T> deleter>
-T* memory::Wrapper<T, deleter>::operator->() const noexcept{
-  return ptr_;
-}
-
-template<class T, memory::Deleter<T> deleter>
-memory::Wrapper<T, deleter>::operator T*() const noexcept{
+template<class T, sdl::internal::memory::Deleter<T> deleter>
+sdl::internal::memory::Wrapper<T, deleter>::operator T*() const noexcept{
   assert(ptr_ && "Null pointer");
-  return ptr_;
+  return ptr_.get();
 }
 
 #endif // __WRAPPER_H__
