@@ -18,8 +18,10 @@ int main(){
   //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
   //SDL_RenderClear(renderer);
   //SDL_RenderPresent(renderer);
-  window.blit(surface, sdl::Vector2i{0, 0});
-  
+  const auto size = surface.size();
+  window.blit(surface, sdl::Rect{0, 0, size.w, size.h});
+  window.update();
+  std::cin.get();
   bar(window);
 }
 

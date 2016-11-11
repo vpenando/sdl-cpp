@@ -38,6 +38,9 @@
     <ClCompile Include="surface.cpp">
       <Filter>Fichiers sources\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="rect.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -75,6 +78,9 @@
     </ClInclude>
     <ClInclude Include="ecs.h">
       <Filter>Fichiers d%27en-tête\internal\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="iconvertible.h">
+      <Filter>Fichiers d%27en-tête\internal</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

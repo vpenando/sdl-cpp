@@ -10,13 +10,26 @@ namespace sdl{
     template<class T>
     class Nullable final{
     public:
+      Nullable(T const& val) : null_(false), value_(val){}
       template<class ...Args>
       explicit Nullable(Args... args) : null_(false), value_(args...){}
       Nullable(null_t const&) : null_(true){}
+      Nullable& operator=(T const& val){
+        null_ = false;
+        value_ = val;
+        return *this;
+      }
+      Nullable& operator=(null_t const&){
+        null_ = true;
+        return *this;
+      }
       operator bool() const noexcept{
-        return null_;
+        return !null_;
       }
       T value() const{
+        if(null_){
+          throw std::runtime_error{"Null value"};
+        }
         return value_;
       }
     private:

@@ -28,7 +28,7 @@ namespace sdl{
 
     template<class T>
     ComponentType<T>& get(){
-      auto it = std::find_if(components_.begin(), components_.end(), [](auto& i) -> bool{
+      auto it = std::find_if(components_.begin(), components_.end(), [](auto const& i) -> bool{
         return dynamic_cast<T*>(i.get()) != nullptr;
       });
       assert(it != components_.end() && "Doesn't have this type of component");
@@ -48,7 +48,7 @@ namespace sdl{
 
     template<class T>
     void remove(){
-      auto cond = [](auto& i) -> bool{ return dynamic_cast<T*>(i.get()) != nullptr; };
+      auto cond = [](auto const& i) -> bool{ return dynamic_cast<T*>(i.get()) != nullptr; };
       auto it = std::remove_if(components_.begin(), components_.end(), cond);
       if(it != components_.end()){
         components_.erase(it, components_.end());
@@ -57,7 +57,7 @@ namespace sdl{
 
     template<class T>
     void remove(std::function<bool(T&)> f){
-      auto cond = [](auto& i) -> bool{
+      auto cond = [](auto const& i) -> bool{
         const auto ptr = dynamic_cast<T*>(i.get());
         return ptr != nullptr && f(*ptr);
       };

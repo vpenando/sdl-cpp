@@ -4,8 +4,8 @@
 namespace sdl{
 
   struct Size final{
-    Size() : w(0u), h(0u){}
-    Size(unsigned width, unsigned height) : w(width), h(height){}
+    Size() noexcept : w(0u), h(0u){}
+    Size(unsigned width, unsigned height) noexcept : w(width), h(height){}
     unsigned w, h;
   };
 

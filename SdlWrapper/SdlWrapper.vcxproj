@@ -126,6 +126,7 @@
     <ClInclude Include="base.h" />
     <ClInclude Include="cache.h" />
     <ClInclude Include="ecs.h" />
+    <ClInclude Include="iconvertible.h" />
     <ClInclude Include="noncopyable.h" />
     <ClInclude Include="nullable.h" />
     <ClInclude Include="rect.h" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="rect.cpp" />
     <ClCompile Include="sdl_cpp.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="window.cpp" />

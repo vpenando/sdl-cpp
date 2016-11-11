@@ -13,7 +13,6 @@
 #include "surface.h"  // sdl::Surface
 #include "vector2.h"  // Vector2
 
-
 namespace sdl{
   namespace internal{
     using BaseWindow = Base<SDL_Window, SDL_DestroyWindow>;
@@ -32,9 +31,9 @@ namespace sdl{
     Window(std::string const& name, Size const& size, flag_t flags = 0u,
       Vector2i const& pos = Vector2i{},
       SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
-    explicit Window(SDL_Window *window, SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
+    explicit Window(SDL_Window *window, Size const& size, SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
     Size size() const noexcept;
-    void blit(Surface const& surface, Vector2i const& pos, NullableRect const& opt_rect = internal::NULL_VAL);
+    void blit(Surface const& surface, Rect const& rect, NullableRect const& opt_rect = internal::NULL_VAL);
     void update();
 
   private:
@@ -42,7 +41,7 @@ namespace sdl{
     internal::Renderer renderer_;
     Screen screen_;
   };
-  
+
 } // namespace sdl
 
 #endif // __WINDOW_H__
