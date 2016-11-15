@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="base.h" />
     <ClInclude Include="cache.h" />
+    <ClInclude Include="color.h" />
     <ClInclude Include="ecs.h" />
     <ClInclude Include="iconvertible.h" />
     <ClInclude Include="noncopyable.h" />
@@ -133,12 +134,14 @@
     <ClInclude Include="sdl_cpp.h" />
     <ClInclude Include="size.h" />
     <ClInclude Include="surface.h" />
-    <ClInclude Include="vector2.h" />
+    <ClInclude Include="point.h" />
     <ClInclude Include="window.h" />
     <ClInclude Include="wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="color.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="point.cpp" />
     <ClCompile Include="rect.cpp" />
     <ClCompile Include="sdl_cpp.cpp" />
     <ClCompile Include="surface.cpp" />

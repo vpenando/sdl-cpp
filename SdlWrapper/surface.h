@@ -1,8 +1,19 @@
 #ifndef __SURFACE_H__
 #define __SURFACE_H__
 
-#include <SDL.h>  // SDL_Window, SDL_DestroyWindow
+// **********************
+// ** Standard library **
+//***********************
+// -
 
+// **********************
+// ** SDL header files **
+// **********************
+#include <SDL.h> // SDL_Surface, SDL_FreeSurface
+
+// **********************
+// ** Custom lib files **
+// **********************
 #include "base.h" // memory::Base
 #include "size.h" // Size
 

@@ -2,10 +2,12 @@
 #include <stdexcept>
 
 sdl::Surface::Surface(SDL_Surface *ptr) : internal::BaseSurface(ptr){
-  if(!ptr){
-    throw std::runtime_error{"Cannot load SDL surface"};
-  }
-  size_ = Size{static_cast<unsigned>(ptr->w), static_cast<unsigned>(ptr->h)};
+  // Ptr is checked in Wrapper::Wrapper
+  const auto width  = ptr->w;
+  const auto height = ptr->h;
+  assert(width  >= 0 && "Surface width must be superior than 0");
+  assert(height >= 0 && "Surface height must be superior than 0");
+  size_ = Size{static_cast<unsigned>(width), static_cast<unsigned>(height)};
 }
 
 sdl::Size sdl::Surface::size() const noexcept{

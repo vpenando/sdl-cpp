@@ -12,7 +12,7 @@ void bar(SDL_Window*){
 }
 
 int main(){
-  sdl::Window window("toto", sdl::Size{500, 500}, 0, sdl::Vector2i{100, 100});
+  sdl::Window window("toto", sdl::Size{500, 500}, 0, sdl::Point{100, 100});
   //auto renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   sdl::Surface surface{SDL_LoadBMP("moderne.bmp")};
   //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);

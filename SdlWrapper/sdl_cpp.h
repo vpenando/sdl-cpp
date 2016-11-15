@@ -1,8 +1,21 @@
 #ifndef __SDL_INIT_H__
 #define __SDL_INIT_H__
 
+// **********************
+// ** Standard library **
+//***********************
+// -
+
+// **********************
+// ** SDL header files **
+// **********************
+// -
+
+// **********************
+// ** Custom lib files **
+// **********************
 #include "base.h"        // sdl::Base
-#include "noncopyable.h" // sdl::noncopyable
+#include "noncopyable.h" // sdl::internal::NonCopyable
 #include "window.h"      // sdl::Window
 
 #undef main
@@ -27,7 +40,7 @@ namespace sdl{
     constexpr auto TARGETTEXTURE = SDL_RENDERER_TARGETTEXTURE;
   } // namespace std::renderer
 
-  class Context : internal::noncopyable{
+  class Context : internal::NonCopyable{
   public:
     Context(unsigned flags = 0);
     ~Context();

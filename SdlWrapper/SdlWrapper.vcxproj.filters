@@ -41,15 +41,18 @@
     <ClCompile Include="rect.cpp">
       <Filter>Fichiers sources\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="point.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
     <ClInclude Include="sdl_cpp.h">
-      <Filter>Fichiers d%27en-tête\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2.h">
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
     <ClInclude Include="size.h">
@@ -81,6 +84,12 @@
     </ClInclude>
     <ClInclude Include="iconvertible.h">
       <Filter>Fichiers d%27en-tête\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="point.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

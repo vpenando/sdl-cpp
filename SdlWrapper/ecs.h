@@ -1,6 +1,9 @@
 #ifndef __COMPONENT_H__
 #define __COMPONENT_H__
 
+// **********************
+// ** Standard library **
+//***********************
 #include <algorithm>   // std::find_if
 #include <cassert>     // assert
 #include <functional>  // std::function
@@ -8,11 +11,21 @@
 #include <type_traits> // std::enable_if, std::is_base_of
 #include <vector>      // std::vector
 
+// **********************
+// ** SDL header files **
+// **********************
+// -
+
+// **********************
+// ** Custom lib files **
+// **********************
+#include "noncopyable.h" // sdl::internal::NonCopyable
+
 namespace sdl{
   namespace internal{
     namespace ecs{
 
-  class Component{
+  class Component : NonCopyable{
     template<class T>
     using ComponentType = typename std::enable_if<std::is_base_of<Component, T>::value, T>::type;
   public:

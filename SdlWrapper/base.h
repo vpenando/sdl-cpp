@@ -1,15 +1,27 @@
 #ifndef __BASE_H__
 #define __BASE_H__
 
+// **********************
+// ** Standard library **
+//***********************
 #include <cassert> // assert
 
-#include "wrapper.h" // memory::Wrapper, memory::Deleter
+// **********************
+// ** SDL header files **
+// **********************
+// -
+
+// **********************
+// ** Custom lib files **
+// **********************
+#include "noncopyable.h" // sdl::internal::NonCopyable
+#include "wrapper.h"     // sdl::internal::memory::Wrapper, memory::Deleter
 
 namespace sdl{
   namespace internal{
 
     template<class T, memory::Deleter<T> deleter>
-    class Base{
+    class Base : public NonCopyable{
     public:
       explicit Base(T* ptr) : wrapper_(ptr){}
       virtual ~Base() = default;
@@ -23,7 +35,7 @@ namespace sdl{
   } // namespace sdl::internal
 } // namespace sdl
 
-  // Implementation
+// Implementation
 
 template<class T, sdl::internal::memory::Deleter<T> deleter>
 sdl::internal::Base<T, deleter>::operator T*() const noexcept{

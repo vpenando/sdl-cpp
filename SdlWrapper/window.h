@@ -1,22 +1,31 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 
+// **********************
+// ** Standard library **
+//***********************
 #include <memory> // std::unique_ptr
 #include <string> // std::string
 
-#include <SDL.h>     // SDL_Window, SDL_DestroyWindow
+// **********************
+// ** SDL header files **
+// **********************
+#include <SDL.h> // SDL_Window, SDL_DestroyWindow, SDL_Renderer, SDL_DestroyRenderer
 
-#include "base.h"     // internal::memory::Base
-#include "nullable.h" // internal::Nullable
+// **********************
+// ** Custom lib files **
+// **********************
+#include "base.h"     // sdl::internal::memory::Base
+#include "nullable.h" // sdl::internal::Nullable
 #include "rect.h"     // sdl::Rect
-#include "size.h"     // Size
+#include "size.h"     // sdl::Size
 #include "surface.h"  // sdl::Surface
-#include "vector2.h"  // Vector2
+#include "point.h"    // sdl::Point
 
 namespace sdl{
   namespace internal{
-    using BaseWindow = Base<SDL_Window, SDL_DestroyWindow>;
-    using Renderer = Base<SDL_Renderer, SDL_DestroyRenderer>;
+    using BaseWindow = Base<SDL_Window,   SDL_DestroyWindow>;
+    using Renderer   = Base<SDL_Renderer, SDL_DestroyRenderer>;
   } // namespace sdl::internal
 
   using Screen = Surface;
@@ -29,11 +38,11 @@ namespace sdl{
     // Ctor
     using internal::BaseWindow::BaseWindow;
     Window(std::string const& name, Size const& size, flag_t flags = 0u,
-      Vector2i const& pos = Vector2i{},
+      Point const& pos = Point{},
       SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
     explicit Window(SDL_Window *window, Size const& size, SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
     Size size() const noexcept;
-    void blit(Surface const& surface, Rect const& rect, NullableRect const& opt_rect = internal::NULL_VAL);
+    void blit(Surface const& surface, Rect const& img_rect, NullableRect const& opt_rect = internal::NULL_VAL);
     void update();
 
   private:

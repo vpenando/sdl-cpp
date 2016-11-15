@@ -1,8 +1,23 @@
 #ifndef __CACHE_H__
 #define __CACHE_H_
 
+
+
+// **********************
+// ** Standard library **
+//***********************
 #include <array>   // std::array
 #include <cassert> // assert
+
+// **********************
+// ** SDL header files **
+// **********************
+// -
+
+// **********************
+// ** Custom lib files **
+// **********************
+// -
 
 template<class T, std::size_t cache_size>
 class Cache{

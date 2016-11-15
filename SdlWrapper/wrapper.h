@@ -1,11 +1,22 @@
 #ifndef __WRAPPER_H__
 #define __WRAPPER_H__
 
-#include "noncopyable.h" // sdl::noncopyable
-
+// **********************
+// ** Standard library **
+//***********************
 #include <cassert>   // assert
 #include <memory>    // std::unique_ptr
 #include <stdexcept> // std::runtime_error
+
+// **********************
+// ** SDL header files **
+// **********************
+// -
+
+// **********************
+// ** Custom lib files **
+// **********************
+#include "noncopyable.h" // sdl::internal::NonCopyable
 
 namespace sdl{
   namespace internal{
@@ -17,7 +28,7 @@ namespace sdl{
 
       // Raw pointer wrapper (not exactly like std::unique_ptr because of operator T*())
       template<class T, Deleter<T> deleter>
-      class Wrapper final : noncopyable{
+      class Wrapper final : NonCopyable{
       public:
         explicit Wrapper(T* ptr);
         // For pointer-like use
