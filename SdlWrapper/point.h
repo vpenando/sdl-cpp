@@ -23,7 +23,7 @@ namespace sdl{
     struct Vector2{
       static_assert(std::is_arithmetic<T>::value, "Invalid type");
       Vector2() noexcept : x(T{}), y(T{}){}
-      Vector2(T const& p_x, T const& p_y) noexcept : x(p_x), y(p_y){}
+      Vector2(T p_x, T p_y) noexcept : x(p_x), y(p_y){}
       T x, y;
     };
 

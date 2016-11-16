@@ -33,13 +33,6 @@ namespace sdl{
     constexpr auto EVERYTHING = SDL_INIT_EVERYTHING;
   } // namespace sdl::init
 
-  namespace renderer{
-    constexpr auto SOFTWARE = SDL_RENDERER_SOFTWARE;
-    constexpr auto ACCELERATED = SDL_RENDERER_ACCELERATED;
-    constexpr auto PRESENTVSYNC = SDL_RENDERER_PRESENTVSYNC;
-    constexpr auto TARGETTEXTURE = SDL_RENDERER_TARGETTEXTURE;
-  } // namespace std::renderer
-
   class Context : internal::NonCopyable{
   public:
     Context(unsigned flags = 0);

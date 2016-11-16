@@ -1,7 +1,9 @@
 #include <iostream>
 
+#include "ecs.h"
 #include "sdl_cpp.h"
 #include "window.h"
+#include <functional>
 
 void foo(int*){
   std::cout << "lel";
@@ -18,8 +20,7 @@ int main(){
   //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
   //SDL_RenderClear(renderer);
   //SDL_RenderPresent(renderer);
-  const auto size = surface.size();
-  window.blit(surface, sdl::Rect{0, 0, size.w, size.h});
+  window.blit(surface, sdl::Point{50, 50});
   window.update();
   std::cin.get();
   bar(window);

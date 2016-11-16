@@ -23,6 +23,13 @@
 #include "point.h"    // sdl::Point
 
 namespace sdl{
+  namespace renderer{
+    constexpr auto SOFTWARE = SDL_RENDERER_SOFTWARE;
+    constexpr auto ACCELERATED = SDL_RENDERER_ACCELERATED;
+    constexpr auto PRESENTVSYNC = SDL_RENDERER_PRESENTVSYNC;
+    constexpr auto TARGETTEXTURE = SDL_RENDERER_TARGETTEXTURE;
+  } // namespace std::renderer
+
   namespace internal{
     using BaseWindow = Base<SDL_Window,   SDL_DestroyWindow>;
     using Renderer   = Base<SDL_Renderer, SDL_DestroyRenderer>;
@@ -39,16 +46,15 @@ namespace sdl{
     using internal::BaseWindow::BaseWindow;
     Window(std::string const& name, Size const& size, flag_t flags = 0u,
       Point const& pos = Point{},
-      SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
-    explicit Window(SDL_Window *window, Size const& size, SDL_RendererFlags renderer_flags = SDL_RENDERER_ACCELERATED);
+      int renderer_flags = renderer::ACCELERATED);
+    Window(SDL_Window *window, Size const& size, int renderer_flags = renderer::ACCELERATED);
     Size size() const noexcept;
-    void blit(Surface const& surface, Rect const& img_rect, NullableRect const& opt_rect = internal::NULL_VAL);
+    void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = internal::NULL_VAL);
     void update();
 
   private:
     Size size_;
     internal::Renderer renderer_;
-    Screen screen_;
   };
 
 } // namespace sdl

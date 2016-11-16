@@ -1,9 +1,6 @@
-﻿  main.cpp
-  Génération de code en cours...
-  Compilation en cours...
-  window.cpp
-  surface.cpp
+﻿  window.cpp
   sdl_cpp.cpp
+  main.cpp
   Génération de code en cours...
   SdlWrapper.vcxproj -> C:\Users\Doudou\Desktop\SdlWrapper\Debug\SdlWrapper.exe
   SdlWrapper.vcxproj -> C:\Users\Doudou\Desktop\SdlWrapper\Debug\SdlWrapper.pdb (Partial PDB)

@@ -1,14 +1,15 @@
 #include "window.h"
 
 #include <stdexcept> // std::runtime_error
+#include <locale>
 
-sdl::Window::Window(std::string const& name, Size const& size, flag_t flags, Point const& pos, SDL_RendererFlags renderer_flags)
+sdl::Window::Window(std::string const& name, Size const& size, flag_t flags, Point const& pos, int renderer_flags)
   : Window(SDL_CreateWindow(name.c_str(), pos.x, pos.y, size.w, size.h, flags), size, renderer_flags){}
 
-sdl::Window::Window(SDL_Window *window, Size const& size, SDL_RendererFlags renderer_flags)
+sdl::Window::Window(SDL_Window *window, Size const& size, int renderer_flags)
   : internal::BaseWindow(window), size_(size),
-  renderer_(SDL_CreateRenderer(*this, -1, renderer_flags)),
-  screen_(SDL_GetWindowSurface(*this)){
+  renderer_(SDL_CreateRenderer(*this, -1, renderer_flags))
+{
   assert(size.w > 0 && "Invalid window width 0");
   assert(size.h > 0 && "Invalid window height 0");
 }
@@ -17,34 +18,19 @@ sdl::Size sdl::Window::size() const noexcept{
   return size_;
 }
 
-namespace{
-  template<class T>
-  using NullableSdlType = typename sdl::internal::Nullable<T>::value_type::value_type;
-
-  template<class T>
-  using NullableSdlTypePtr = std::unique_ptr<NullableSdlType<T>>;
-
-  template<class T>
-  NullableSdlTypePtr<T> ptr_from_nullable(sdl::internal::Nullable<T> const& nullable){
-    return (nullable) ? std::make_unique<NullableSdlType<T>>(nullable.value()) : NULL;
-  }
-} // namespace
-
-
-void sdl::Window::blit(Surface const& surface, Rect const& img_rect, NullableRect const& opt_rect){
+void sdl::Window::blit(Surface const& surface, Point const& coords, NullableRect const& src_rect){
   assert(surface && "Invalid SDL surface");
-  assert(screen_ && "Invalid SDL screen");
-  const SDL_Rect rect = img_rect;
-  auto opt_rect_ptr = ptr_from_nullable(opt_rect);
-  const auto ret = SDL_BlitSurface(surface, &rect, screen_, opt_rect_ptr.get());
+  using Texture = internal::memory::ResourcePtr<SDL_Texture>;
+  const Texture texture{SDL_CreateTextureFromSurface(renderer_, surface), SDL_DestroyTexture};
+  const auto size = surface.size();
+  const auto src  = (src_rect) ? src_rect.value() : SDL_Rect{0, 0, static_cast<int>(size.w), static_cast<int>(size.h)};
+  const auto dest = SDL_Rect{coords.x, coords.y, src.w, src.h};
+  const auto ret  = SDL_RenderCopy(renderer_, texture.get(), &src, &dest);
   if(ret != 0){
     throw std::runtime_error{SDL_GetError()};
   }
 }
 
 void sdl::Window::update(){
-  const auto ret = SDL_UpdateWindowSurface(*this);
-  if(ret != 0){
-    throw std::runtime_error{SDL_GetError()};
-  }
+  SDL_RenderPresent(renderer_);
 }

@@ -26,6 +26,9 @@ namespace sdl{
       template<class T>
       using Deleter = void(*)(T*);
 
+      template<class T>
+      using ResourcePtr = std::unique_ptr<T, Deleter<T>>;
+
       // Raw pointer wrapper (not exactly like std::unique_ptr because of operator T*())
       template<class T, Deleter<T> deleter>
       class Wrapper final : NonCopyable{
@@ -35,7 +38,7 @@ namespace sdl{
         operator T*() const noexcept; // Converter Wrapper<T> => T*
 
       private:
-        std::unique_ptr<T, Deleter<T>> ptr_;
+        ResourcePtr<T> ptr_;
       };
 
     } // namespace sdl::internal::memory

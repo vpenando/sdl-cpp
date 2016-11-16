@@ -21,7 +21,7 @@ namespace sdl{
   namespace internal{
 
     template<class T, memory::Deleter<T> deleter>
-    class Base : public NonCopyable{
+    class Base : NonCopyable{
     public:
       explicit Base(T* ptr) : wrapper_(ptr){}
       virtual ~Base() = default;
