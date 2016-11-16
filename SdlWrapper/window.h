@@ -31,11 +31,11 @@ namespace sdl{
   } // namespace std::renderer
 
   namespace internal{
-    using BaseWindow = Base<SDL_Window,   SDL_DestroyWindow>;
-    using Renderer   = Base<SDL_Renderer, SDL_DestroyRenderer>;
+    using BaseWindow = Base<SDL_Window, SDL_DestroyWindow>;
   } // namespace sdl::internal
 
-  using Screen = Surface;
+  using Renderer = internal::Base<SDL_Renderer, SDL_DestroyRenderer>;
+  using Texture  = internal::Base<SDL_Texture,  SDL_DestroyTexture>;
 
   // SDL_Window wrapper
   class Window final : public internal::BaseWindow{
@@ -54,7 +54,7 @@ namespace sdl{
 
   private:
     Size size_;
-    internal::Renderer renderer_;
+    Renderer renderer_;
   };
 
 } // namespace sdl

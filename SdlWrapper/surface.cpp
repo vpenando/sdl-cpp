@@ -1,5 +1,4 @@
 #include "surface.h"
-#include <stdexcept>
 
 sdl::Surface::Surface(SDL_Surface *ptr) : internal::BaseSurface(ptr){
   // Ptr is checked in Wrapper::Wrapper
