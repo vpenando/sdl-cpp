@@ -13,16 +13,39 @@ void bar(SDL_Window*){
   std::cout << "bar";
 }
 
+class Foo : public sdl::internal::ecs::Component{
+public:
+  Foo(int i, bool b, char c):i_(i), b_(b), c_(c){}
+  int i_;
+  bool b_;
+  char c_;
+};
 int main(){
-  sdl::Window window("toto", sdl::Size{500, 500}, 0, sdl::Point{100, 100});
+  sdl::internal::ecs::BaseComponent c;
+  auto& c2 = c.add<Foo>(42, true, 'c');
+  std::cout << c2.i_;
+  const auto contains = c.contains<Foo>([](Foo const& f) -> bool{return f.i_ == 42; });
+  sdl::Window window("toto", sdl::Size{500, 500});
   //auto renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   sdl::Surface surface{SDL_LoadBMP("moderne.bmp")};
   //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
   //SDL_RenderClear(renderer);
   //SDL_RenderPresent(renderer);
-  window.blit(surface, sdl::Point{50, 50});
-  window.update();
-  std::cin.get();
+  bool loop = true;
+  while(loop){
+    SDL_Event e;
+    if(SDL_PollEvent(&e)){
+      if(e.type == SDL_QUIT)
+        loop = false;
+      else if(e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE)
+        break;
+    }
+
+    window.blit(surface, sdl::Point{50, 50});
+    window.update();
+  }
+  
+  //std::cin.get();
   bar(window);
 }
 

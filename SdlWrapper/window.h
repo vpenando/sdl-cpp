@@ -31,6 +31,7 @@ namespace sdl{
   } // namespace std::renderer
 
   namespace internal{
+    class IDrawable;
     using BaseWindow = Base<SDL_Window, SDL_DestroyWindow>;
   } // namespace sdl::internal
 
@@ -44,18 +45,30 @@ namespace sdl{
   public:
     // Ctor
     using internal::BaseWindow::BaseWindow;
-    Window(std::string const& name, Size const& size, flag_t flags = 0u,
-      Point const& pos = Point{},
-      int renderer_flags = renderer::ACCELERATED);
-    Window(SDL_Window *window, Size const& size, int renderer_flags = renderer::ACCELERATED);
+    Window(std::string const& name, Size const& size, flag_t flags = 0u);
+    Window(SDL_Window *window, int renderer_flags = renderer::ACCELERATED);
     Size size() const noexcept;
     void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = internal::NULL_VAL);
+    void blit(internal::IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = internal::NULL_VAL);
     void update();
 
   private:
     Size size_;
     Renderer renderer_;
   };
+
+  namespace internal{
+    class IDrawable : NonCopyable{
+      friend class Window;
+      using NullableRect = Nullable<Rect>;
+    public:
+      IDrawable() = default;
+      virtual ~IDrawable() = default;
+
+    private:
+      virtual void on_window(Window& window, Point const& coords, NullableRect const& src_rect = NULL_VAL) const = 0;
+    };
+  }
 
 } // namespace sdl
 

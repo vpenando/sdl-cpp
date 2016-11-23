@@ -91,5 +91,8 @@
     <ClInclude Include="color.h">
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
+    <ClInclude Include="sprite.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

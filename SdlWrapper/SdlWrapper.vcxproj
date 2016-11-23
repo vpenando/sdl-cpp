@@ -133,6 +133,7 @@
     <ClInclude Include="rect.h" />
     <ClInclude Include="sdl_cpp.h" />
     <ClInclude Include="size.h" />
+    <ClInclude Include="sprite.h" />
     <ClInclude Include="surface.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="window.h" />

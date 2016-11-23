@@ -20,8 +20,7 @@ namespace sdl{
   namespace internal{
 
     template<class T>
-    class IConvertible{
-    public:
+    struct IConvertible{
       using value_type = T;
       IConvertible() = default;
       virtual ~IConvertible() = default;

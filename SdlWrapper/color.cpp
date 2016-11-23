@@ -5,11 +5,6 @@ sdl::Color::Color(u8 red, u8 green, u8 blue, u8 alpha) noexcept
 {  
 }
 
-sdl::Color::Color(u8 color, u8 alpha) noexcept
-  : Color(color, color, color, alpha)
-{
-}
-
 sdl::Color::operator SDL_Color() const noexcept{
   SDL_Color color;
   color.r = r;

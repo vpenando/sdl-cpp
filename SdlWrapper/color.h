@@ -22,7 +22,6 @@ namespace sdl{
   
   struct Color final : public internal::IConvertible<SDL_Color>{
     Color(u8 red, u8 green, u8 blue, u8 alpha = 0) noexcept;
-    Color(u8 color = 0, u8 alpha = 0) noexcept;
     operator SDL_Color() const noexcept override;
     u8 r, g, b, a;
   };
