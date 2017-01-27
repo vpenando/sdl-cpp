@@ -14,6 +14,7 @@
 // **********************
 // ** Custom lib files **
 // **********************
+#include "ecs.h"         // sdl::ecs::Component
 #include "noncopyable.h" // sdl::internal::NonCopyable
 #include "wrapper.h"     // sdl::internal::memory::Wrapper, memory::Deleter
 
@@ -21,7 +22,7 @@ namespace sdl{
   namespace internal{
 
     template<class T, memory::Deleter<T> deleter>
-    class Base : NonCopyable{
+    class Base : private NonCopyable, public ecs::Component{
     public:
       explicit Base(T* ptr) : wrapper_(ptr){}
       virtual ~Base() = default;

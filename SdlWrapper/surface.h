@@ -4,7 +4,7 @@
 // **********************
 // ** Standard library **
 //***********************
-// -
+#include <string> // std::string
 
 // **********************
 // ** SDL header files **
@@ -15,6 +15,7 @@
 // ** Custom lib files **
 // **********************
 #include "base.h" // sdl::internal::memory::Base
+#include "ecs.h"  // sdl::internal::Component
 #include "size.h" // sdl::Size
 
 namespace sdl{
@@ -24,12 +25,14 @@ namespace sdl{
 
   class Surface final : public internal::BaseSurface{
   public:
-    explicit Surface::Surface(SDL_Surface *ptr);
+    Surface::Surface(SDL_Surface *ptr);
     Size size() const noexcept;
 
   private:
     Size size_;
   };
+
+  SDL_Surface *load_bmp(std::string const& path);
 
 } // namespace sdl
 

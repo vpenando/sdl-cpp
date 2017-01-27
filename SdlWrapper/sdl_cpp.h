@@ -15,25 +15,26 @@
 // ** Custom lib files **
 // **********************
 #include "base.h"        // sdl::Base
+#include "ecs.h"         // sdl::ecs::Component
 #include "noncopyable.h" // sdl::internal::NonCopyable
 #include "window.h"      // sdl::Window
 
 #undef main
 
 namespace sdl{
-  namespace init{
-    constexpr auto TIMER = SDL_INIT_TIMER;
-    constexpr auto AUDIO = SDL_INIT_AUDIO;
-    constexpr auto VIDEO = SDL_INIT_VIDEO;
-    constexpr auto JOYSTICK = SDL_INIT_JOYSTICK;
-    constexpr auto HAPTIC = SDL_INIT_HAPTIC;
-    constexpr auto GAMECONTROLLER = SDL_INIT_GAMECONTROLLER;
-    constexpr auto EVENTS = SDL_INIT_EVENTS;
-    constexpr auto NOPARACHUTE = SDL_INIT_NOPARACHUTE;
-    constexpr auto EVERYTHING = SDL_INIT_EVERYTHING;
-  } // namespace sdl::init
+  enum init{
+    TIMER = SDL_INIT_TIMER,
+    AUDIO = SDL_INIT_AUDIO,
+    VIDEO = SDL_INIT_VIDEO,
+    JOYSTICK = SDL_INIT_JOYSTICK,
+    HAPTIC = SDL_INIT_HAPTIC,
+    GAMECONTROLLER = SDL_INIT_GAMECONTROLLER,
+    EVENTS = SDL_INIT_EVENTS,
+    NOPARACHUTE = SDL_INIT_NOPARACHUTE,
+    EVERYTHING = SDL_INIT_EVERYTHING
+  }; // namespace sdl::init
 
-  class Context : internal::NonCopyable{
+  class Context : internal::NonCopyable, public ecs::BaseComponent{
   public:
     Context(unsigned flags = 0);
     ~Context();

@@ -97,5 +97,17 @@
     <ClInclude Include="event.h">
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

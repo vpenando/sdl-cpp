@@ -14,11 +14,11 @@
 // **********************
 // ** Custom lib files **
 // **********************
-// -
+#include "ecs.h" // sdl::ecs::Component
 
 namespace sdl{
 
-  struct Size final{
+  struct Size final : public ecs::Component{
     Size() noexcept : w(0u), h(0u){}
     Size(unsigned width, unsigned height) noexcept : w(width), h(height){}
     unsigned w, h;

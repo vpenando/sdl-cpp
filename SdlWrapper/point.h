@@ -14,7 +14,9 @@
 // **********************
 // ** Custom lib files **
 // **********************
+#include "ecs.h"          // sdl::ecs::Component
 #include "iconvertible.h" // sdl::internal::IConvertible
+#include "shape.h"        // sdl::Shape
 
 namespace sdl{
   namespace internal{
@@ -33,7 +35,9 @@ namespace sdl{
 
   struct Point final :
     public internal::Vector2i,
-    public internal::IConvertible<SDL_Point>
+    public internal::IConvertible<SDL_Point>,
+    public ecs::Component,
+    public Shape
   {
     using internal::Vector2i::Vector2i;
     operator SDL_Point() const noexcept override;

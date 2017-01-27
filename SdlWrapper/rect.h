@@ -14,13 +14,14 @@
 // **********************
 // ** Custom lib files **
 // **********************
+#include "ecs.h"          // sdl::ecs::Component
 #include "iconvertible.h" // sdl::internal::IConvertible
 #include "size.h"         // sdl::Size
 #include "point.h"        // sdl::Point
 
 namespace sdl{
 
-  struct Rect final : public internal::IConvertible<SDL_Rect>{
+  struct Rect final : public internal::IConvertible<SDL_Rect>, public ecs::Component{
     Rect();
     Rect(int coordX, int coordY);
 		Rect(int coordX, int coordY, unsigned width, unsigned height);

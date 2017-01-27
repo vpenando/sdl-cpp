@@ -128,11 +128,14 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="ecs.h" />
     <ClInclude Include="event.h" />
+    <ClInclude Include="exceptions.h" />
     <ClInclude Include="iconvertible.h" />
+    <ClInclude Include="mouse.h" />
     <ClInclude Include="noncopyable.h" />
     <ClInclude Include="nullable.h" />
     <ClInclude Include="rect.h" />
     <ClInclude Include="sdl_cpp.h" />
+    <ClInclude Include="shape.h" />
     <ClInclude Include="size.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="surface.h" />
@@ -148,6 +151,9 @@
     <ClCompile Include="sdl_cpp.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

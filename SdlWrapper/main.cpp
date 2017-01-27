@@ -5,6 +5,7 @@
 #include "window.h"
 #include <functional>
 #include "event.h"
+#include "mouse.h"
 
 void foo(int*){
   std::cout << "lel";
@@ -15,29 +16,40 @@ void bar(SDL_Window*){
 }
 
 int main(){
-  sdl::Window window("toto", sdl::Size{500, 500});
-  //auto renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  sdl::Surface surface{SDL_LoadBMP("moderne.bmp")};
-  //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-  //SDL_RenderClear(renderer);
-  //SDL_RenderPresent(renderer);
-  bool loop = true;
-  while(loop){
-    sdl::Event e;
-    if(sdl::poll_event(&e)){
-      if(e.type == SDL_QUIT)
-        loop = false;
-      else if(e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE)
-        break;
+  try{
+    // Initialisation
+    const auto ret = SDL_Init(sdl::init::VIDEO);
+    if(ret){
+      throw std::runtime_error{"Cannot init SDL (status : " + std::to_string(ret) + ")"};
+    }
+    // Création de la fenêtre
+    sdl::Window window{"My Window", sdl::Size{500, 500}};
+    // Création de la surface
+    sdl::Surface surface = sdl::load_bmp("moderne.bmp");
+    const auto surface_size = surface.size();
+    bool loop = true;
+    while(loop){
+      sdl::Event e;
+      if(sdl::poll_event(&e)){
+        loop = !(e.type == SDL_QUIT);
+      }
+      // Calcul des coordonnées
+      const auto mouse_state = sdl::mouse::state();
+      const auto point = sdl::Point{
+        mouse_state.x - static_cast<int>(surface_size.w) / 2,
+        mouse_state.y - static_cast<int>(surface_size.h) / 2
+      };
+      // Affichage
+      window.blit(surface, point);
+      window.update();
     }
 
-    window.blit(surface, sdl::Point{50, 50});
-    window.update();
+  } catch(std::exception const& e){
+    std::cout << "Une erreur est survenue : " << e.what();
   }
-  
-  //std::cin.get();
-  bar(window);
+  SDL_Quit();
 }
+
 
 /*
  * #include <SDL.h>

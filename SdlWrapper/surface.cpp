@@ -1,5 +1,7 @@
 #include "surface.h"
 
+#include "exceptions.h"
+
 sdl::Surface::Surface(SDL_Surface *ptr) : internal::BaseSurface(ptr){
   // Ptr is checked in Wrapper::Wrapper
   const auto width  = ptr->w;
@@ -11,4 +13,12 @@ sdl::Surface::Surface(SDL_Surface *ptr) : internal::BaseSurface(ptr){
 
 sdl::Size sdl::Surface::size() const noexcept{
   return size_;
+}
+
+SDL_Surface *sdl::load_bmp(std::string const& path){
+  const auto ptr = SDL_LoadBMP(path.c_str());
+  if(!ptr){
+    throw sdl::InvalidPathException{"Cannot load SDL Surface '" + path + "'"};
+  }
+  return ptr;
 }
