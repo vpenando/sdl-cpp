@@ -48,6 +48,20 @@ namespace sdl{
     }
   };
 
+  struct WindowProperties final{
+    using flag_t = Uint32;
+    WindowProperties(std::string const& n, Size const& s, flag_t f, int rf,
+      internal::Nullable<Point> np = internal::NULL_VAL,
+      internal::Nullable<SDL_Surface*> ns = internal::NULL_VAL)
+      : name{n}, size{s}, flags{f}, renderer_flags{rf}, pos{np}, icon{ns}{}
+    std::string name;                      // Nom de la fenêtre 
+    Size size;                             // Dimensions de la fenêtre
+    flag_t flags;                          // Flags de la fenêtre
+    int renderer_flags;                    // Flags du renderer
+    internal::Nullable<Point> pos;         // (Optionnel) Coordonnées de la fenêtre
+    internal::Nullable<SDL_Surface*> icon; // (Optionnel) Icone de la fenêtre
+  };
+
   // SDL_Window wrapper
   class Window final : public internal::BaseWindow{
     using flag_t = Uint32;

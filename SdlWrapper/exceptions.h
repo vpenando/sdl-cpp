@@ -23,6 +23,11 @@ namespace sdl{
     InvalidPathException(std::string const& w) : std::runtime_error(w.c_str()){}
   };
 
-}
+  class InitializationFailureException : public std::runtime_error{
+  public:
+    InitializationFailureException(std::string const& w) : std::runtime_error(w.c_str()){}
+  };
+
+} // namespace sdl
 
 #endif // __EXCEPTIONS_H__

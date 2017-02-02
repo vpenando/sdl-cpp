@@ -18,19 +18,20 @@ void bar(SDL_Window*){
 int main(){
   try{
     // Initialisation
-    const auto ret = SDL_Init(sdl::init::VIDEO);
+    const auto ret = SDL_Init(sdl::INIT_VIDEO);
     if(ret){
-      throw std::runtime_error{"Cannot init SDL (status : " + std::to_string(ret) + ")"};
+      throw std::runtime_error{"Cannot init SDL (status: " + std::to_string(ret) + ")"};
     }
     // Création de la fenêtre
     sdl::Window window{"My Window", sdl::Size{500, 500}};
     // Création de la surface
     sdl::Surface surface = sdl::load_bmp("moderne.bmp");
+    SDL_SetWindowIcon(window, surface);
     const auto surface_size = surface.size();
     bool loop = true;
     while(loop){
       sdl::Event e;
-      if(sdl::poll_event(&e)){
+      if(SDL_PollEvent(&e)){
         loop = !(e.type == SDL_QUIT);
       }
       // Calcul des coordonnées

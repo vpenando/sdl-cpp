@@ -47,6 +47,9 @@
     <ClCompile Include="color.cpp">
       <Filter>Fichiers sources\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">

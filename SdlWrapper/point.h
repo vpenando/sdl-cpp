@@ -45,4 +45,14 @@ namespace sdl{
 
 } // namespace sdl
 
+template<class T>
+inline bool operator==(sdl::internal::Vector2<T> const& v1, sdl::internal::Vector2<T> const& v2) noexcept{
+  return v1.x == v2.x && v1.y == v2.y;
+}
+
+template<class T>
+inline bool operator!=(sdl::internal::Vector2<T> const& v1, sdl::internal::Vector2<T> const& v2) noexcept{
+  return !(v1 == v2);
+}
+
 #endif // __VECTOR2_H__

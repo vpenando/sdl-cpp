@@ -22,16 +22,24 @@
 namespace sdl{
 
   struct Rect final : public internal::IConvertible<SDL_Rect>, public ecs::Component{
-    Rect();
-    Rect(int coordX, int coordY);
-		Rect(int coordX, int coordY, unsigned width, unsigned height);
-		Rect(SDL_Rect const& rect);
-    operator SDL_Rect() const override;
+    Rect() noexcept;
+    Rect(int coordX, int coordY) noexcept;
+		Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept;
+		Rect(SDL_Rect const& rect) noexcept;
+    operator SDL_Rect() const noexcept override;
     //Point pos;
     //Size size;
 		int x, y, w, h;
   };
 
 } // namespace sdl
+
+inline bool operator==(sdl::Rect const& r1, sdl::Rect const& r2) noexcept{
+  return r1.x == r2.x && r1.y == r2.y && r1.w == r2.w && r1.h == r2.h;
+}
+
+inline bool operator!=(sdl::Rect const& r1, sdl::Rect const& r2) noexcept{
+  return !(r1 == r2);
+}
 
 #endif // __RECT_H__

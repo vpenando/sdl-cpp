@@ -21,7 +21,12 @@
 namespace sdl{
   namespace internal{
 
-    template<class T, memory::Deleter<T> deleter>
+    template<class T>
+    inline void delete_ptr(T *ptr){
+      delete ptr;
+    }
+
+    template<class T, memory::Deleter<T> deleter = delete_ptr>
     class Base : private NonCopyable, public ecs::Component{
     public:
       explicit Base(T* ptr) : wrapper_(ptr){}
