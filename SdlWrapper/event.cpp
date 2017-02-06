@@ -1,13 +1,13 @@
-//#include "event.h"
-//
-//#include <stdexcept> // std::runtime_error
-//
-//void sdl::Event::poll(){
-//  if(SDL_PollEvent(&event_)){
-//    throw std::runtime_error{SDL_GetError()};
-//  }
-//}
-//
-//sdl::Event::operator SDL_Event() const noexcept{
-//  return event_;
-//}
+#include "event.h"
+
+
+sdl::EventHandler::EventHandler(bool read_events)
+  : keyboard_handler_(add<KeyboardStateHandler>(read_events)),
+  mouse_handler_(add<MouseStateHandler>(read_events)){
+
+}
+
+void sdl::EventHandler::update(){
+  keyboard_handler_.update();
+  mouse_handler_.update();
+}

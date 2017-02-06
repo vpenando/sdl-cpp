@@ -6,6 +6,8 @@
 #include <functional>
 #include "event.h"
 #include "mouse.h"
+#include "keyboard.h"
+#include "event.h"
 
 void foo(int*){
   std::cout << "lel";
@@ -29,20 +31,29 @@ int main(){
     SDL_SetWindowIcon(window, surface);
     const auto surface_size = surface.size();
     bool loop = true;
+    sdl::EventHandler handler;
+    auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
+    auto& keyboard_handler = handler.get<sdl::KeyboardStateHandler>();
     while(loop){
       sdl::Event e;
       if(SDL_PollEvent(&e)){
         loop = !(e.type == SDL_QUIT);
       }
+      const auto keyboard_state = keyboard_handler.state();
+      if(keyboard_state[sdl::KeyCode::A].pressed){
+        std::cout << "Key A pressed" << std::endl;
+      }
       // Calcul des coordonnées
-      const auto mouse_state = sdl::mouse::state();
+      const auto mouse_state = mouse_handler.state();
+      const auto mouse_coords = mouse_state.coords();
       const auto point = sdl::Point{
-        mouse_state.x - static_cast<int>(surface_size.w) / 2,
-        mouse_state.y - static_cast<int>(surface_size.h) / 2
+        static_cast<int>(mouse_coords.x) - static_cast<int>(surface_size.w) / 2,
+        static_cast<int>(mouse_coords.y) - static_cast<int>(surface_size.h) / 2
       };
       // Affichage
       window.blit(surface, point);
       window.update();
+      handler.update();
     }
 
   } catch(std::exception const& e){

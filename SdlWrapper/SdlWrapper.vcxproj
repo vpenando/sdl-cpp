@@ -130,6 +130,8 @@
     <ClInclude Include="event.h" />
     <ClInclude Include="exceptions.h" />
     <ClInclude Include="iconvertible.h" />
+    <ClInclude Include="ihandler.h" />
+    <ClInclude Include="keyboard.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="noncopyable.h" />
     <ClInclude Include="nullable.h" />
@@ -146,7 +148,9 @@
   <ItemGroup>
     <ClCompile Include="color.cpp" />
     <ClCompile Include="event.cpp" />
+    <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mouse.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="rect.cpp" />
     <ClCompile Include="sdl_cpp.cpp" />

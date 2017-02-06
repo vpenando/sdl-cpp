@@ -15,7 +15,8 @@
 // **********************
 // ** Custom lib files **
 // **********************
-// -
+#include "keyboard.h" // sdl::KeyboardStateHandler
+#include "mouse.h"    // sdl::MouseStateHandler
 
 namespace sdl{
 
@@ -25,6 +26,17 @@ namespace sdl{
     assert(e && "Null pointer");
     return SDL_PollEvent(e);
   }
+
+  class EventHandler final : protected ecs::BaseComponent{
+  public:
+    EventHandler(bool read_events = true);
+    void update();
+    using ecs::BaseComponent::get;
+
+  private:
+    KeyboardStateHandler& keyboard_handler_;
+    MouseStateHandler& mouse_handler_;
+  };
 
 } // namespace sdl
 

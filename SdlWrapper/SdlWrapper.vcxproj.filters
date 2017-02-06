@@ -50,6 +50,12 @@
     <ClCompile Include="event.cpp">
       <Filter>Fichiers sources\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="mouse.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.h">
@@ -107,6 +113,12 @@
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
     <ClInclude Include="exceptions.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="ihandler.h">
+      <Filter>Fichiers d%27en-tête\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard.h">
       <Filter>Fichiers d%27en-tête\sdl</Filter>
     </ClInclude>
   </ItemGroup>
