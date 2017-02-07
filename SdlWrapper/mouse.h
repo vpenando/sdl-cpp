@@ -35,7 +35,10 @@ namespace sdl{
     Uint32 state_;
   };
 
-  class MouseStateHandler final : public internal::IHandler<sdl::MouseState>{
+  class MouseStateHandler final :
+    public internal::IHandler<sdl::MouseState>,
+    public ecs::Component
+  {
   public:
     MouseStateHandler(bool read_events = false);
     void update() override;

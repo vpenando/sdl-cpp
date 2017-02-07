@@ -4,12 +4,13 @@
 // **********************
 // ** Standard library **
 //***********************
-// -
+#include <cassert>    // assert
+#include <functional> // std::function
+#include <map>        // std::map
 
 // **********************
 // ** SDL header files **
 // **********************
-#include <cassert> // assert
 #include <SDL.h>   // SDL_Surface, SDL_FreeSurface
 
 // **********************
@@ -29,14 +30,27 @@ namespace sdl{
 
   class EventHandler final : protected ecs::BaseComponent{
   public:
-    EventHandler(bool read_events = true);
+    EventHandler();
+    template<class T>
+    T& get();
     void update();
-    using ecs::BaseComponent::get;
+    void on_quit(std::function<void(void)> const& fun);
+    void on_press(KeyCode code, std::function<void(void)> const& fun);
 
   private:
+    //using ecs::BaseComponent::get;
     KeyboardStateHandler& keyboard_handler_;
     MouseStateHandler& mouse_handler_;
+    std::function<void(void)> on_quit_;
+    bool on_quit_defined_;
+    std::map<KeyCode, std::function<void(void)>> actions_;
   };
+
+  template<class T>
+  T& EventHandler::get(){
+    static_assert(std::is_base_of<sdl::internal::Handler, T>::value, "Expected a Handler type");
+    return ecs::BaseComponent::get<T>();
+  }
 
 } // namespace sdl
 

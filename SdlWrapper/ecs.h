@@ -78,17 +78,9 @@ namespace sdl{
     class BaseComponent : public Component{
       using ComponentPtr = std::unique_ptr<Component>;
       using ComponentsList = std::vector<ComponentPtr>;
-      using Iterator = ComponentsList::iterator;
-      using ConstIterator = ComponentsList::const_iterator;
     public:
       BaseComponent() = default;
       virtual ~BaseComponent() = default;
-
-      // Iterators
-      Iterator begin() noexcept;
-      ConstIterator begin() const noexcept;
-      Iterator end() noexcept;
-      ConstIterator end() const noexcept;
 
       ComponentsList::size_type count() const noexcept;
 
@@ -118,22 +110,6 @@ namespace sdl{
     // ********************
     // ** Implementation **
     // ********************
-
-    inline BaseComponent::Iterator BaseComponent::begin() noexcept{
-      return components_.begin();
-    }
-
-    inline BaseComponent::ConstIterator BaseComponent::begin() const noexcept{
-      return components_.begin();
-    }
-
-    inline BaseComponent::Iterator BaseComponent::end() noexcept{
-      return components_.end();
-    }
-
-    inline BaseComponent::ConstIterator BaseComponent::end() const noexcept{
-      return components_.end();
-    }
 
     inline BaseComponent::ComponentsList::size_type BaseComponent::count() const noexcept{
       return components_.size();

@@ -19,8 +19,14 @@
 namespace sdl{
   namespace internal{
 
+    class Handler{
+    public:
+      Handler() = default;
+      ~Handler() = default;
+    };
+
     template<class T>
-    class IHandler : public ecs::Component{
+    class IHandler : public Handler{
     public:
       IHandler() = default;
       virtual ~IHandler() = default;

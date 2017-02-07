@@ -66,7 +66,8 @@ namespace sdl{
     Shift = SDLK_LSHIFT | SDLK_RSHIFT,
     LeftShift = SDLK_LSHIFT,
     RightShift = SDLK_RSHIFT,
-    Tab = SDLK_TAB | SDLK_KP_TAB
+    Tab = SDLK_TAB | SDLK_KP_TAB,
+    Esc = SDLK_ESCAPE
   };
 
   struct Key final{
@@ -79,11 +80,15 @@ namespace sdl{
   public:
     KeyboardState(std::vector<Uint8> const& state);
     Key operator[](KeyCode code) const;
+    Key operator[](SDL_Keycode code) const;
   private:
     std::vector<Uint8> state_;
   };
 
-  class KeyboardStateHandler final : public internal::IHandler<KeyboardState>{
+  class KeyboardStateHandler final :
+    public internal::IHandler<KeyboardState>,
+    public ecs::Component
+  {
   public:
     KeyboardStateHandler(bool read_events = false);
     KeyboardState state() const override;

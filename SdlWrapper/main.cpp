@@ -32,17 +32,12 @@ int main(){
     const auto surface_size = surface.size();
     bool loop = true;
     sdl::EventHandler handler;
+    handler.on_quit([&loop](){ loop = false; });
+    handler.on_press(sdl::KeyCode::A, [](){
+      std::cout << "Key A pressed" << std::endl;
+    });
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
-    auto& keyboard_handler = handler.get<sdl::KeyboardStateHandler>();
     while(loop){
-      sdl::Event e;
-      if(SDL_PollEvent(&e)){
-        loop = !(e.type == SDL_QUIT);
-      }
-      const auto keyboard_state = keyboard_handler.state();
-      if(keyboard_state[sdl::KeyCode::A].pressed){
-        std::cout << "Key A pressed" << std::endl;
-      }
       // Calcul des coordonnées
       const auto mouse_state = mouse_handler.state();
       const auto mouse_coords = mouse_state.coords();
