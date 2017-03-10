@@ -76,7 +76,7 @@ void sdl::Window::blit(Texture const& texture, Point const& coords, NullableRect
   }
 }
 
-void sdl::Window::blit(api::IDrawable const& drawable, Point const& coords, NullableRect const& src_rect) const {
+void sdl::Window::blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect) const {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
   drawable.on_window(*this, coords, src_rect);
