@@ -33,7 +33,6 @@ namespace sdl{
   } // namespace std::renderer
 
   namespace api{
-    class IDrawable;
     using BaseWindow = memory::Wrapper<SDL_Window, SDL_DestroyWindow>;
     using BaseRenderer = memory::Wrapper<SDL_Renderer, SDL_DestroyRenderer>;
   } // namespace sdl::api
@@ -76,7 +75,7 @@ namespace sdl{
     Size size() const noexcept;
     void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
     void blit(Texture const& texture, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
-    void blit(api::IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
+    void blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
     void draw_point(Point const& point);
     void draw_points(std::vector<Point> const& points);
     void draw_line(Point const& p1, Point const& p2);
@@ -87,19 +86,6 @@ namespace sdl{
     Renderer renderer_;
   };
 
-  namespace api{
-    class IDrawable{
-      friend class ::sdl::Window;
-      using NullableRect = Nullable<Rect>;
-    public:
-      IDrawable() = default;
-      virtual ~IDrawable() = default;
-
-    private:
-      virtual void on_window(Window const& window, Point const& coords, NullableRect const& src_rect = NULL_VAL) const = 0;
-    };
-
-  } // namespace sdl::api
 } // namespace sdl
 
 #endif // __WINDOW_H__
