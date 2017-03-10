@@ -10,7 +10,7 @@ sdl::KeyboardState::KeyboardState(std::vector<Uint8> const& state)
 
 sdl::Key sdl::KeyboardState::operator[](sdl::KeyCode code) const{
   const auto scan_code = SDL_GetScancodeFromKey(static_cast<SDL_Keycode>(code));
-  assert(static_cast<size_type>(scan_code) < state_.size() && "Out of bounds");
+  assert(static_cast<unsigned>(scan_code) < state_.size() && "Out of bounds");
   const bool pressed = state_[scan_code] != 0;
   return sdl::Key{code, pressed};
 }

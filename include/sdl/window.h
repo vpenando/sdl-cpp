@@ -18,6 +18,7 @@
 // **********************
 #include <sdl/color.h>              // sdl::Color
 #include <sdl/api/nullable.h>       // sdl::api::Nullable
+#include <sdl/idrawable.h>          // sdl::IDrawable
 #include <sdl/rect.h>               // sdl::Rect
 #include <sdl/size.h>               // sdl::Size
 #include <sdl/surface.h>            // sdl::Surface
