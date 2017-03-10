@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\sdl">
+      <UniqueIdentifier>{10121495-d5d1-40f0-a399-6a3f78a38a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\sdl">
+      <UniqueIdentifier>{4d79e571-49df-46a4-b59e-a28db9b8b926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\sdl\internal">
+      <UniqueIdentifier>{beba5c2b-3de0-4c55-abdf-de323962f946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\sdl\internal\memory">
+      <UniqueIdentifier>{dc217379-f9a5-41d0-9d5b-298a8263cc8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\sdl\ecs">
+      <UniqueIdentifier>{5d807387-1fd9-4ebb-ba89-30e4f0e820f7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\sdl\color.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\event.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\keyboard.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\mouse.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\point.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\rect.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\sdl_cpp.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\surface.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sdl\window.cpp">
+      <Filter>Fichiers sources\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\sdl\event.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\exceptions.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\keyboard.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\mouse.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\point.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\rect.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\sdl_cpp.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\shape.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\size.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\sprite.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\surface.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\window.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\color.h">
+      <Filter>Fichiers d%27en-tête\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\memory\wrapper.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\cache.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\iconvertible.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\ihandler.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\noncopyable.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\nullable.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\api\base.h">
+      <Filter>Fichiers d%27en-tête\sdl\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sdl\ecs\ecs.h">
+      <Filter>Fichiers d%27en-tête\sdl\ecs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
