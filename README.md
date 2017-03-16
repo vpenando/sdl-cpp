@@ -56,7 +56,7 @@ window.blit(sprite, sdl::Point{0, 0});
 ```
 
 ## Event handling
-This wrapper allows you to handle event without use the basic SDL event system, because it provides a class `sdl::EventHandler` you can use easily:
+This wrapper allows you to handle events without using the basic SDL event system, because it provides a class `sdl::EventHandler` you can use easily:
 ```cpp
 sdl::EventHandler handler;
 auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
