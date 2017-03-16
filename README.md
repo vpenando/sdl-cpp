@@ -1,6 +1,14 @@
 # sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp)
 
-RAII-conform SDL wrapper written in C++14 by Vincent P.
+RAII-conform SDL wrapper written in C++14 by Vincent P. This wrapper is compatible with C SDL2 code; each RAII-conform SDL entity is convertible to its C equivalent:
+```cpp
+void foo(SDL_Window *window){
+  // ...
+}
+// ...
+sdl::Window window{"My Window", sdl::Size{500, 500}};
+foo(window); // Ok!
+```
 
 # Examples
 Note: See `src/main.cpp` for a basic example.
@@ -60,7 +68,7 @@ This wrapper allows you to handle events without using the basic SDL event syste
 ```cpp
 sdl::EventHandler handler;
 auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
-auto& keyboard_handler = handelr.get<sdl::KeyboardStateHandler>();
+auto& keyboard_handler = handler.get<sdl::KeyboardStateHandler>();
 
 // ...
 
@@ -77,3 +85,4 @@ handler.on_press(sdl::KeyCode::A, [](){
   std::cout << "Key A pressed" << std::endl;
 });
 ```
+Note: Don't use `sdl::EventHandler::get<T>()` in your main loop because this operation is very heavy; prefer a reference as in the example.
