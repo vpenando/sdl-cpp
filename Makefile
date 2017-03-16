@@ -11,7 +11,7 @@ FLAGS_DEBUG = -D __SDL__ -O0 -g $(SDL_CFLAGS)
 FLAGS_RELEASE = -D __SDL__ -O2 -DNDEBUG $(SDL_CFLAGS)
 LDFLAGS = -lm $(SDL_LDFLAGS)
 
-SOURCES=src/*.cpp
+SOURCES=src/*.cpp src/sdl/*.cpp
 INCLUDE=./include
 
 all: debug
@@ -21,7 +21,3 @@ debug:
   
 debug:
 	$(CXX) -o $(TARGET) $(OBJECTS) $(CXXFLAGS) $(FLAGS_RELEASE) $(LDFLAGS)
-  
-clean:
-	rm -f *.o game/*.o game/ai/*.o y3d/*.o ${TARGET}
- 
