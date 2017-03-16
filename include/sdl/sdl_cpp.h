@@ -36,7 +36,7 @@ namespace sdl{
   inline void init(Uint32 flags){
     if(SDL_Init(flags)){
       const std::string error_message = "Failed to init SDL: ";
-      throw InitializationFailureException{error_message + SDL_GetError()};
+      throw std::runtime_error{error_message + SDL_GetError()};
     }
   }
 
