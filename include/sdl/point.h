@@ -16,7 +16,6 @@
 // **********************
 #include <sdl/api/iconvertible.h> // sdl::api::IConvertible
 #include <sdl/ecs/ecs.h>          // sdl::ecs::Component
-#include <sdl/shape.h>            // sdl::Shape
 
 namespace sdl{
   namespace api{
