@@ -1,5 +1,5 @@
 TARGET = sdltest
-CXX = clang++
+CXX = clang++-3.6
 SDL_CFLAGS = $(shell sdl2-config --cflags)
 SDL_LDFLAGS = $(shell sdl2-config --libs)
 CXXFLAGS = -std=c++14 -Wold-style-cast -Woverloaded-virtual -Wfloat-equal \
