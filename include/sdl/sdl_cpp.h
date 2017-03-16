@@ -16,7 +16,7 @@
 // **********************
 #include <sdl/api/base.h>        // sdl::Base
 #include <sdl/ecs/ecs.h>         // sdl::ecs::Component
-#include <sdl/exceptions.h>      // sdl::InitializationFailureException
+#include <sdl/event.h>           // sdl::Event, sdl::EventHandler
 #include <sdl/api/noncopyable.h> // sdl::api::NonCopyable
 #include <sdl/window.h>          // sdl::Window
 
