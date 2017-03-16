@@ -36,7 +36,7 @@ void draw_point(Point const& point);
 void draw_points(std::vector<Point> const& points);
 void draw_line(Point const& p1, Point const& p2);
 ```
-If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just it to make you custom class inherit from `IDrawable` and implement `on_window`:
+If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just have to make you custom class inherit from `IDrawable` and implement `on_window`:
 ```cpp
 class Sprite final : public IDrawable{
   using NullableRect = sdl::api::Nullable<Rect>;
