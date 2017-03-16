@@ -2,7 +2,7 @@ TARGET = sdltest
 CXX = clang++
 SDL_CFLAGS = $(shell sdl2-config --cflags)
 SDL_LDFLAGS = $(shell sdl2-config --libs)
-CXXFLAGS = -std=c++1z -Wold-style-cast -Woverloaded-virtual -Wfloat-equal \
+CXXFLAGS = -std=c++14 -Wold-style-cast -Woverloaded-virtual -Wfloat-equal \
 			-Wwrite-strings -Wpointer-arith -Wcast-qual -Wcast-align \
 			-Wconversion -Wshadow -Weffc++ -Wredundant-decls \
 			-Winit-self -Wswitch-default -Wswitch-enum -Wundef \
