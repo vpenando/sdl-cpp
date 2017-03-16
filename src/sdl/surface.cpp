@@ -1,7 +1,5 @@
 #include <sdl/surface.h>
 
-#include <sdl/exceptions.h>
-
 sdl::Surface::Surface(SDL_Surface *ptr) : api::BaseSurface(ptr){
   // Ptr is checked in Wrapper::Wrapper
   const auto width  = ptr->w;
