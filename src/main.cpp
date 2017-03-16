@@ -10,6 +10,7 @@ int main(int, char **){
     sdl::init(sdl::INIT_VIDEO);
     // Window
     sdl::Window window{"My Window", sdl::Size{500, 500}};
+    bool loop = true;
     // Event handler
     sdl::EventHandler handler;
     handler.on_quit([&loop](){ loop = false; });
