@@ -23,7 +23,7 @@ INCLUDE=./include
 OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o window.o
 
 all: $(OBJ)
-	$(CXX) -o $(TARGET) $(OBJ)
+	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
   
 clean:
 	rm -rf *.o
