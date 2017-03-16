@@ -1,5 +1,9 @@
 #include <iostream>
 
+#ifdef main
+#undef main
+#endif
+
 #include <sdl/ecs/ecs.h>
 #include <sdl/sdl_cpp.h>
 #include <sdl/window.h>
@@ -24,9 +28,9 @@ int main(){
     if(ret){
       throw std::runtime_error{"Cannot init SDL (status: " + std::to_string(ret) + ")"};
     }
-    // Création de la fenêtre
+    // CrÃ©ation de la fenÃªtre
     sdl::Window window{"My Window", sdl::Size{500, 500}};
-    // Création de la surface
+    // CrÃ©ation de la surface
     sdl::Surface surface{SDL_LoadBMP("moderne.bmp")};
     SDL_SetWindowIcon(window, surface);
     const auto surface_size = surface.size();
@@ -38,7 +42,7 @@ int main(){
     });
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
     while(loop){
-      // Calcul des coordonnées
+      // Calcul des coordonnÃ©es
       const auto mouse_state = mouse_handler.state();
       const auto mouse_coords = mouse_state.coords();
       const auto point = sdl::Point{
