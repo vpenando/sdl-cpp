@@ -20,7 +20,8 @@ int main(int, char **){
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
     while(loop){
       // Example:
-      const auto mouse_coords = mouse_handler.state();
+      const auto mouse_state = mouse_handler.state();
+      const auto mouse_coords = mouse_state.coords();
       std::cout << "Mouse: (" << mouse_coords.x << ", " << mouse_coords.y << ")" << std::endl;
       // Update
       window.update();
