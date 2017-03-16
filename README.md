@@ -1,4 +1,4 @@
-# sdl-cpp [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp)
+# sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp)
 
 RAII-conform SDL wrapper written in C++14 by Vincent P.
 
