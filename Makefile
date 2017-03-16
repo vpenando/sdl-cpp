@@ -22,14 +22,9 @@ LDFLAGS = -lm $(SDL_LDFLAGS)
 INCLUDE=./include
 OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o window.o
 
-all: debug
-
-debug: $(OBJ) clean
-	$(CXX) -o $(TARGET) $(OBJ)  $(CXXFLAGS) $(FLAGS_DEBUG) $(SDL_CFLAGS) $(SDL_LDFLAGS) $(LDFLAGS)
+all: $(OBJ)
+	$(CXX) -o $(TARGET) $(OBJ)
   
-release: $(OBJ) clean
-	$(CXX) -o $(TARGET) $(OBJ) -I$(INCLUDE) $(CXXFLAGS) $(FLAGS_RELEASE) $(SDL_CFLAGS) $(SDL_LDFLAGS) $(LDFLAGS)
-
 clean:
 	rm -rf *.o
 	rm $(TARGET)
