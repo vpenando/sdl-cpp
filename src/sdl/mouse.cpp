@@ -1,16 +1,5 @@
 #include <sdl/mouse.h>
 
-enum SdlClick{
-  Left = SDL_BUTTON(SDL_BUTTON_LEFT),
-  Right = SDL_BUTTON(SDL_BUTTON_RIGHT),
-  Middle = SDL_BUTTON(SDL_BUTTON_MIDDLE)
-};
-
-template<SdlClick c>
-inline bool clicked(int state) noexcept{
-  return (state & c) != 0;
-}
-
 sdl::MouseState::MouseState(Point const& coords, Uint32 state) noexcept
   : coords_{coords}, state_{state}
 {
