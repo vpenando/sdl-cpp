@@ -25,7 +25,7 @@ clean:
 	rm $(TARGET)
 	
 %.o: src/sdl/%.cpp
-	$(CXX) $(CXXFLAGS) $(FLAGS_DEBUG) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
 
 main.o: src/main.cpp
-	$(CXX) $(CXXFLAGS) $(FLAGS_DEBUG) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
