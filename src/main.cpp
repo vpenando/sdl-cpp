@@ -21,7 +21,7 @@ void bar(SDL_Window*){
   std::cout << "bar";
 }
 
-int main(){
+int main(int, char **){
   try{
     // Initialisation
     const auto ret = SDL_Init(sdl::INIT_VIDEO);
