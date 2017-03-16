@@ -18,7 +18,7 @@ sdl::Size sdl::Surface::size() const noexcept{
 SDL_Surface *sdl::load_bmp(std::string const& path){
   const auto ptr = SDL_LoadBMP(path.c_str());
   if(!ptr){
-    throw sdl::InvalidPathException{"Cannot load SDL Surface '" + path + "'"};
+    throw std::runtime_error{"Cannot load SDL Surface '" + path + "'"};
   }
   return ptr;
 }
