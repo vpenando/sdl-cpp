@@ -22,6 +22,7 @@ release: $(OBJ) clean
 	$(CXX) -o $(TARGET) $(OBJ) -I$(INCLUDE) $(CXXFLAGS) $(FLAGS_RELEASE) $(SDL_CFLAGS) $(SDL_LDFLAGS) $(LDFLAGS)
 
 clean:
+	rm -rf *.o
 	rm $(TARGET)
 	
 %.o: src/sdl/%.cpp
