@@ -14,13 +14,19 @@
 // **********************
 // ** Custom lib files **
 // **********************
-#include <sdl/api/base.h>        // sdl::Base
+#include <sdl/color.h>           // sdl::Color
 #include <sdl/ecs/ecs.h>         // sdl::ecs::Component
 #include <sdl/event.h>           // sdl::Event, sdl::EventHandler
 #include <sdl/api/noncopyable.h> // sdl::api::NonCopyable
+#include <sdl/point.h>           // sdl::Point
+#include <sdl/rect.h>            // sdl::Rect
+#include <sdl/size.h>            // sdl::Size
+#include <sdl/surface.h>         // sdl::Surface
 #include <sdl/window.h>          // sdl::Window
 
+#ifdef main
 #undef main
+#endif
 
 namespace sdl{
   constexpr auto INIT_TIMER = SDL_INIT_TIMER;
