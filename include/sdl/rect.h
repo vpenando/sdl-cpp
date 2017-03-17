@@ -24,13 +24,11 @@ namespace sdl{
   struct Rect final : public api::IConvertible<SDL_Rect>, public ecs::Component{
     Rect() noexcept;
     Rect(int coordX, int coordY) noexcept;
-		Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept;
-		Rect(SDL_Rect const& rect) noexcept;
+    Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept;
+    Rect(SDL_Rect const& rect) noexcept;
     operator SDL_Rect() const noexcept override;
-    //Point pos;
-    //Size size;
-		int x, y;
-		unsigned w, h;
+    int x, y;
+    unsigned w, h;
   };
 
 } // namespace sdl
