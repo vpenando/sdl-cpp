@@ -19,17 +19,16 @@ sdl::WindowProperties::~WindowProperties() {
 // Window
 
 sdl::Window::Window(std::string const& name, Size const& size, flag_t flags)
-  : Window(SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED) {}
+  : Window(SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                            static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(std::string const& name, Point const& coords, Size const& size, flag_t flags)
-  : Window(SDL_CreateWindow(name.c_str(), coords.x, coords.y, static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED) {
-
-}
+  : Window(SDL_CreateWindow(name.c_str(), coords.x, coords.y,
+                            static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(std::string const& name, Rect const& rect, flag_t flags)
-  : Window(SDL_CreateWindow(name.c_str(), rect.x, rect.y, static_cast<int>(rect.w), static_cast<int>(rect.h), flags), renderer::ACCELERATED) {
-
-}
+  : Window(SDL_CreateWindow(name.c_str(), rect.x, rect.y,
+                            static_cast<int>(rect.w), static_cast<int>(rect.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(SDL_Window *window, unsigned renderer_flags)
   : api::BaseWindow(window), renderer_(SDL_CreateRenderer(*this, -1, renderer_flags)) {
