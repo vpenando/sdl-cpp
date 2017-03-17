@@ -13,7 +13,7 @@ foo(window); // Ok!
 # Examples
 Note: See `src/main.cpp` for a basic example.
 
-## Creating a window
+### Creating a window
 The simpliest way:
 ```cpp
 sdl::Window window{"My Window", sdl::Size{500, 500}};
@@ -27,7 +27,7 @@ Window(std::string const& name, Rect const& rect, flag_t flags = 0u);
 Window(SDL_Window *window, unsigned renderer_flags = renderer::ACCELERATED);
 ```
 
-## Displaying an image
+### Displaying an image
 Now that you have a window, you may want to display some textures or shapes, isn't it?
 ```cpp
 sdl::Surface surface = sdl::load_bmp("image.bmp");
@@ -67,7 +67,7 @@ Sprite sprite{};
 window.blit(sprite, sdl::Point{0, 0});
 ```
 
-## Event handling
+### Event handling
 This wrapper allows you to handle events without using the basic SDL event system, because it provides a class `sdl::EventHandler` you can use easily:
 ```cpp
 sdl::EventHandler handler;
