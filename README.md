@@ -46,13 +46,18 @@ void draw_line(Point const& p1, Point const& p2);
 ```
 If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just have to make you custom class inherit from `IDrawable` and implement `on_window`:
 ```cpp
-class Sprite final : public IDrawable{
-  using NullableRect = sdl::api::Nullable<Rect>;
+class Sprite final : public sdl::IDrawable{
+  using NullableRect = sdl::api::Nullable<sdl::Rect>;
 public:
   Sprite() = default;
   // ...
 private:
-  void on_window(Window const& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const override{
+  // Inherited from IDrawable
+  void on_window(
+    sdl::Window const& window,
+    sdl::Point const& coords,
+    NullableRect const& src_rect = sdl::api::NULL_VAL) const override
+  {
     // ...
   }
 };
@@ -78,7 +83,7 @@ const auto mouse_coords = mouse_state.coords();
 const auto clicked = mouse_state.clicked(ClickCode::Left);
 // Keyboard
 const auto keyboard_state = keyboard_handler.state();
-const auto key_pressed = keyboard_state[](KeyCode::A).pressed;
+const auto key_pressed = keyboard_state[KeyCode::A].pressed;
 
 // You may also bind an action to an event:
 handler.on_press(sdl::KeyCode::A, [](){
