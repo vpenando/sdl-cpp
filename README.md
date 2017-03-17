@@ -89,5 +89,9 @@ const auto key_pressed = keyboard_state[KeyCode::A].pressed;
 handler.on_press(sdl::KeyCode::A, [](){
   std::cout << "Key A pressed" << std::endl;
 });
+
+// ...
+// In your loop:
+handler.update();
 ```
 Note: Don't use `sdl::EventHandler::get<T>()` in your main loop because this operation is very heavy; prefer a reference as in the example.
