@@ -47,7 +47,6 @@ void draw_line(Point const& p1, Point const& p2);
 If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just have to make you custom class inherit from `IDrawable` and implement `on_window`:
 ```cpp
 class Sprite final : public sdl::IDrawable{
-  using NullableRect = sdl::api::Nullable<sdl::Rect>;
 public:
   Sprite() = default;
   // ...
