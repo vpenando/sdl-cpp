@@ -20,8 +20,6 @@
 
 namespace sdl {
 
-  class Window;
-
   class IDrawable {
     friend class Window;
   protected:
