@@ -21,7 +21,10 @@
 
 namespace sdl{
 
-  struct Rect final : public api::IConvertible<SDL_Rect>, public ecs::Component{
+  struct Rect final :
+    public api::IConvertible<SDL_Rect>,
+    public ecs::Component
+  {
     Rect() noexcept;
     Rect(int coordX, int coordY) noexcept;
     Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept;
