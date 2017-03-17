@@ -16,11 +16,11 @@
 // **********************
 // -
 
-namespace sdl{
-  namespace api{
+namespace sdl {
+  namespace api {
 
     template<class T>
-    struct IConvertible{
+    struct IConvertible {
       using value_type = T;
       IConvertible() = default;
       virtual ~IConvertible() = default;
