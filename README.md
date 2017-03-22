@@ -18,7 +18,7 @@ The simpliest way:
 ```cpp
 sdl::Window window{"My Window", sdl::Size{500, 500}};
 ```
-`sdl::Window` has some other ctors:
+`sdl::Window` has some other constructors:
 ```cpp
 Window(SDL_Window *window); // Inherited from sdl::api::Wrapper<T, Deleter<T>>
 Window(std::string const& name, Size const& size, flag_t flags = 0u);
@@ -44,7 +44,7 @@ void draw_point(Point const& point);
 void draw_points(std::vector<Point> const& points);
 void draw_line(Point const& p1, Point const& p2);
 ```
-If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just have to make you custom class inherit from `IDrawable` and implement `on_window`:
+If you want to display some other stuff (for example, let's imagine a class `Sprite`), you just have to make your custom class inherit from `IDrawable` and implement `on_window`:
 ```cpp
 class Sprite final : public sdl::IDrawable{
 public:
