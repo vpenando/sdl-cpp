@@ -18,6 +18,7 @@
 #include <sdl/ecs/ecs.h>         // sdl::ecs::Component
 #include <sdl/event.h>           // sdl::Event, sdl::EventHandler
 #include <sdl/api/noncopyable.h> // sdl::api::NonCopyable
+#include <sdl/pixel.h>           // sdl::Pixel
 #include <sdl/point.h>           // sdl::Point
 #include <sdl/rect.h>            // sdl::Rect
 #include <sdl/size.h>            // sdl::Size
