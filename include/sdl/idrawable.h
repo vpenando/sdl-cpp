@@ -20,10 +20,11 @@
 
 namespace sdl {
 
-	class Window;
-
+  class Window;
+  
   class IDrawable {
     friend class Window;
+  protected:
     using NullableRect = api::Nullable<Rect>;
   public:
     IDrawable() = default;

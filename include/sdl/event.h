@@ -20,11 +20,11 @@
 #include <sdl/keyboard.h> // sdl::KeyboardStateHandler
 #include <sdl/mouse.h>    // sdl::MouseStateHandler
 
-namespace sdl{
+namespace sdl {
 
   using Event = SDL_Event;
 
-  inline int poll_event(Event *e){
+  inline int poll_event(Event *e) {
     assert(e && "Null pointer");
     return SDL_PollEvent(e);
   }
@@ -43,7 +43,7 @@ namespace sdl{
     void on_press(KeyCode code, Action const& fun);
 
   private:
-    
+    void handle_actions();
     KeyboardStateHandler& keyboard_handler_;
     MouseStateHandler& mouse_handler_;
     std::function<void(void)> on_quit_;

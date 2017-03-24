@@ -16,7 +16,6 @@
 // **********************
 #include <sdl/api/iconvertible.h> // sdl::api::IConvertible
 #include <sdl/ecs/ecs.h>          // sdl::ecs::Component
-#include <sdl/shape.h>            // sdl::Shape
 
 namespace sdl{
   namespace api{
@@ -36,8 +35,7 @@ namespace sdl{
   struct Point final :
     public api::Vector2i,
     public api::IConvertible<SDL_Point>,
-    public ecs::Component,
-    public Shape
+    public ecs::Component
   {
     using api::Vector2i::Vector2i;
     operator SDL_Point() const noexcept override;
