@@ -1,8 +1,7 @@
 #include <sdl/pixel.h>
 
-#include <cassert> // assert
-
-constexpr auto IS_BIG_ENDIAN = SDL_BYTEORDER == SDL_BIG_ENDIAN;
+#include <cassert>   // assert
+#include <stdexcept> // std::runtime_error
 
 inline sdl::u32 pixel_from_endian(sdl::u8 *ptr) {
   assert(ptr && "Null pointer");

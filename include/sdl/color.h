@@ -25,7 +25,7 @@ namespace sdl{
   
   struct Color final : public api::IConvertible<SDL_Color>, public ecs::Component{
     Color(u8 red, u8 green, u8 blue, u8 alpha = 255) noexcept;
-    Color(u32 val) noexcept;
+    Color(u32 val = 0) noexcept;
     operator SDL_Color() const noexcept override;
     u8 r, g, b, a;
     const static Color BLACK;
