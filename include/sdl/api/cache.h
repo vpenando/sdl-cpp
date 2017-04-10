@@ -1,4 +1,4 @@
-#ifndef __CACHE_H__
+/*#ifndef __CACHE_H__
 #define __CACHE_H_
 
 // **********************
@@ -83,4 +83,4 @@ T Cache<T, cache_size>::operator[](std::size_t i) const{
   return data_[i];
 }
 
-#endif // __CACHE_H__
+#endif // __CACHE_H__*/
