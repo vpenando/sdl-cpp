@@ -16,13 +16,10 @@
 // **********************
 #include <sdl/api/iconvertible.h> // sdl::api::IConvertible
 #include <sdl/ecs/ecs.h>          // sdl::ecs::Component
+#include <sdl/types.h>            // sdl::u8, sdl::u32
 
 namespace sdl{
-  
-  using u8 = Uint8;
-  using u16 = Uint16;
-  using u32 = Uint32;
-  
+
   struct Color final : public api::IConvertible<SDL_Color>, public ecs::Component{
     Color(u8 red, u8 green, u8 blue, u8 alpha = 255) noexcept;
     Color(u32 val = 0) noexcept;
