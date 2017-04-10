@@ -10,6 +10,18 @@ sdl::Window window{"My Window", sdl::Size{500, 500}};
 foo(window); // Ok!
 ```
 
+# Conversion matrix:
+SDL C type | Wrapper type
+-----------|-------------
+`SDL_Color` | `sdl::Color`
+`SDL_Point` | `sdl::Point`
+`SDL_Rect` | `sdl::Rect`
+`SDL_Surface*` | `sdl::Surface`
+`SDL_Texture`| `sdl::Texture`
+`SDL_Window*`| `sdl::Window`
+
+Note: `sdl::Event` is just an alias of `SDL_Event`.
+
 # Examples
 Note: See `src/main.cpp` for a basic example.
 
