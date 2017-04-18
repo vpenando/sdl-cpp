@@ -53,11 +53,3 @@ void sdl::Surface::copy_surface(Surface const& surface) {
   rect.h = surface.ptr_->h;
   SDL_BlitSurface(surface.ptr_, &rect, ptr_, 0);
 }
-
-SDL_Surface *sdl::load_bmp(std::string const& path){
-  const auto ptr = SDL_LoadBMP(path.c_str());
-  if(!ptr){
-    throw std::runtime_error{"Cannot load SDL Surface '" + path + "'"};
-  }
-  return ptr;
-}
