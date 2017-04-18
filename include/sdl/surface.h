@@ -29,7 +29,7 @@ namespace sdl{
     Surface(Surface const& surface);
     Surface& operator=(Surface const& surface);
     Size size() const noexcept;
-    operator SDL_Surface*();
+    operator SDL_Surface*() const noexcept;
   private:
     void copy_surface(Surface const& surface);
     SDL_Surface *ptr_;
