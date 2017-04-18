@@ -23,13 +23,16 @@ namespace sdl{
     using BaseSurface = memory::Wrapper<SDL_Surface, SDL_FreeSurface>;
   } // namespace sdl::api
 
-  class Surface final : public api::BaseSurface{
+  class Surface final /*: public api::BaseSurface*/{
   public:
     Surface(SDL_Surface *ptr);
+    Surface(Surface const& surface);
+    Surface& operator=(Surface const& surface)
     Size size() const noexcept;
 
   private:
-    Size size_;
+    void copy_surface(Surface const& surface);
+    SDL_Surface *ptr_;
   };
 
   SDL_Surface *load_bmp(std::string const& path);
