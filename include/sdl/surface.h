@@ -27,7 +27,7 @@ namespace sdl{
   public:
     Surface(SDL_Surface *ptr);
     Surface(Surface const& surface);
-    Surface& operator=(Surface const& surface)
+    Surface& operator=(Surface const& surface);
     Size size() const noexcept;
 
   private:
@@ -35,7 +35,18 @@ namespace sdl{
     SDL_Surface *ptr_;
   };
 
-  SDL_Surface *load_bmp(std::string const& path);
+  template<class Function, class ...Args>
+  Surface make_surface(Function f, Args... args){
+    auto ptr = f(args...);
+    if (!ptr) {
+      throw std::runtime_error{SDL_GetError()};
+    }
+    return Surface(ptr);
+  }
+  
+  auto const load_bmp = [](std::string const& filename) {
+    return make_surface([](auto const& f) { return SDL_LoadBMP(f.c_str());}, filename);
+  };
 
 } // namespace sdl
 
