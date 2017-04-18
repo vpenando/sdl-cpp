@@ -38,7 +38,7 @@ sdl::Size sdl::Surface::size() const noexcept{
   return Size{static_cast<unsigned>(width), static_cast<unsigned>(height)};
 }
 
-sdl::Surface::operator SDL_Surface*() {
+sdl::Surface::operator SDL_Surface*() const noexcept {
   assert(ptr_ && "Null pointer");
   return ptr_;
 }
