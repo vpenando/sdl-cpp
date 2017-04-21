@@ -6,7 +6,7 @@ sdl::Rect::Rect() noexcept
 sdl::Rect::Rect(unsigned width, unsigned height) noexcept
   : Rect(0, 0, width, height){}
 
-sdl::Rect::Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept
+sdl::Rect::Rect(int coord_x, int coord_y, unsigned width, unsigned height) noexcept
   : x(coordX), y(coordY), w(width), h(height){}
 
 sdl::Rect::Rect(SDL_Rect const& rect) noexcept
