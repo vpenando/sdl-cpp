@@ -18,10 +18,26 @@
 #include <sdl/ecs/ecs.h>          // sdl::ecs::Component
 #include <sdl/types.h>            // sdl::u8, sdl::u32
 
-namespace sdl{
+//! @namespace sdl
+//! @brief The SDL wrapper main namespace
+namespace sdl {
 
-  struct Color final : public api::IConvertible<SDL_Color>, public ecs::Component{
+  //! @class   Color
+  //! @brief   Represents a RGBA color
+  //! @extends IConvertible
+  //! @extends Component
+  struct Color final :
+    public api::IConvertible<SDL_Color>,
+    public ecs::Component
+  {
+    //! @brief Ctor
+    //! @param red   The R value
+    //! @param green The G value
+    //! @param blue  The B value
+    //! @param alpha The A value
     Color(u8 red, u8 green, u8 blue, u8 alpha = 255) noexcept;
+    //! @brief Ctor
+    //! @param val The hexadecimal representation of a color
     Color(u32 val = 0) noexcept;
     operator SDL_Color() const noexcept override;
     u8 r, g, b, a;
