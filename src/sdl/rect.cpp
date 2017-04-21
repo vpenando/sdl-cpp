@@ -3,8 +3,8 @@
 sdl::Rect::Rect() noexcept
   : x(0), y(0), w(0), h(0){}
 
-sdl::Rect::Rect(int coordX, int coordY) noexcept
-  : Rect(coordX, coordY, 0, 0){}
+sdl::Rect::Rect(unsigned width, unsigned height) noexcept
+  : Rect(0, 0, width, height){}
 
 sdl::Rect::Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept
   : x(coordX), y(coordY), w(width), h(height){}
