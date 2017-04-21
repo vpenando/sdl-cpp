@@ -31,7 +31,11 @@ namespace sdl {
     template<class T>
     struct Vector2 {
       static_assert(std::is_arithmetic<T>::value, "Invalid type");
+      //! @brief Ctor
       Vector2() noexcept : x(T{}), y(T{}){}
+      //! @brief Ctor
+      //! @param p_x The X coordinate
+      //! @param p_y The Y coordinate
       Vector2(T p_x, T p_y) noexcept : x(p_x), y(p_y) {}
       T x, y;
     };
