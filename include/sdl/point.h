@@ -1,5 +1,5 @@
-#ifndef __VECTOR2_H__
-#define __VECTOR2_H__
+#ifndef __POINT_H__
+#define __POINT_H__
 
 // **********************
 // ** Standard library **
@@ -41,4 +41,4 @@ inline bool operator!=(sdl::Point const& p1, sdl::Point const& p2) noexcept{
   return !(p1 == p2);
 }
 
-#endif // __VECTOR2_H__
+#endif // __POINT_H__
