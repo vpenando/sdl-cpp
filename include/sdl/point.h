@@ -17,21 +17,42 @@
 #include <sdl/api/iconvertible.h> // sdl::api::IConvertible
 #include <sdl/ecs/ecs.h>          // sdl::ecs::Component
 
-namespace sdl{
-  namespace api{
+//! @namespace sdl
+//! @brief The SDL wrapper main namespace
+namespace sdl {
+  
+  //! @namespace api
+  //! @brief The internal SDL API namespace
+  namespace api {
 
+    //! @class  Vector2
+    //! @brief  Represents a couple of coordinates X and Y
+    //! @tparam T The arithmetic type used for X and Y
     template<class T>
-    struct Vector2{
+    struct Vector2 {
       static_assert(std::is_arithmetic<T>::value, "Invalid type");
       Vector2() noexcept : x(T{}), y(T{}){}
-      Vector2(T p_x, T p_y) noexcept : x(p_x), y(p_y){}
+      Vector2(T p_x, T p_y) noexcept : x(p_x), y(p_y) {}
       T x, y;
     };
 
+    //! @typedef Vector2i
+    //! @brief   An alias of Vector2<T> with T = int
+    //! @see     Vector2
     using Vector2i = Vector2<int>;
+    
+    //! @typedef Vector2f
+    //! @brief   An alias of Vector2<T> with T = float
+    //! @see     Vector2
     using Vector2f = Vector2<float>;
+    
   } // namespace sdl::api
 
+  //! @class   Point
+  //! @brief   The SDL_Point equivalent
+  //! @extends Vector2i
+  //! @extends IConvertible
+  //! @extends Component
   struct Point final :
     public api::Vector2i,
     public api::IConvertible<SDL_Point>,
