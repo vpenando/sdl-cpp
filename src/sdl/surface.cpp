@@ -1,7 +1,7 @@
 #include <sdl/surface.h>
 
 #include <algorithm> // std::swap
-#include <stdexdept> // std::runtime_error
+#include <stdexcept> // std::runtime_error
 
 enum Mask : Uint32 {
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
