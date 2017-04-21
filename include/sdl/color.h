@@ -41,19 +41,19 @@ namespace sdl {
     Color(u32 val = 0) noexcept;
     operator SDL_Color() const noexcept override;
     u8 r, g, b, a;
-    const static Color BLACK;
-    const static Color RED;
-    const static Color GREEN;
-    const static Color BLUE;
+    const static Color BLACK; //!< The black color template
+    const static Color RED;   //!< The red color template
+    const static Color GREEN; //!< The green color template
+    const static Color BLUE;  //!< The blue color template
   };
 
 } // namespace sdl
 
-inline bool operator==(sdl::Color const& c1, sdl::Color const& c2) noexcept{
+inline bool operator==(sdl::Color const& c1, sdl::Color const& c2) noexcept {
   return c1.r == c2.r && c1.g == c2.g && c1.b == c2.b && c1.a == c2.a;
 }
 
-inline bool operator!=(sdl::Color const& c1, sdl::Color const& c2) noexcept{
+inline bool operator!=(sdl::Color const& c1, sdl::Color const& c2) noexcept {
   return !(c1 == c2);
 }
 
