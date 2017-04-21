@@ -1,6 +1,7 @@
 #include <sdl/surface.h>
 
 #include <algorithm> // std::swap
+#include <stdexdept> // std::runtime_error
 
 enum Mask : Uint32 {
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -56,5 +57,8 @@ void sdl::Surface::copy_surface(Surface const& surface) {
   rect.y = 0;
   rect.w = surface.ptr_->w;
   rect.h = surface.ptr_->h;
-  SDL_BlitSurface(surface.ptr_, &rect, ptr_, 0);
+  const auto ret = SDL_BlitSurface(surface.ptr_, &rect, ptr_, 0);
+  if (ret != 0) {
+    throw std::runtime_error{SDL_GetError()};
+  }
 }
