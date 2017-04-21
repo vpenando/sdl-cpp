@@ -7,7 +7,7 @@ sdl::Rect::Rect(unsigned width, unsigned height) noexcept
   : Rect(0, 0, width, height){}
 
 sdl::Rect::Rect(int coord_x, int coord_y, unsigned width, unsigned height) noexcept
-  : x(coordX), y(coordY), w(width), h(height){}
+  : x(coord_x), y(coord_y), w(width), h(height){}
 
 sdl::Rect::Rect(SDL_Rect const& rect) noexcept
   : Rect(rect.x, rect.y, static_cast<unsigned>(rect.w), static_cast<unsigned>(rect.h)){}
