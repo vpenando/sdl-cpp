@@ -27,7 +27,7 @@ namespace sdl{
 } // namespace sdl
 
 inline bool operator==(sdl::Size const& s1, sdl::Size const& s2) noexcept{
-  return s1.w == s2.w;
+  return s1.w == s2.w && s1.h == s2.h;
 }
 
 inline bool operator!=(sdl::Size const& s1, sdl::Size const& s2) noexcept{
