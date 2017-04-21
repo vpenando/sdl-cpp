@@ -26,7 +26,7 @@ namespace sdl{
     public ecs::Component
   {
     Rect() noexcept;
-    Rect(int coordX, int coordY) noexcept;
+    Rect(unsigned width, unsigned height) noexcept;
     Rect(int coordX, int coordY, unsigned width, unsigned height) noexcept;
     Rect(SDL_Rect const& rect) noexcept;
     operator SDL_Rect() const noexcept override;
