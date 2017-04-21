@@ -25,7 +25,7 @@ namespace sdl{
     public ecs::Component
   {
     Point() noexcept : Point(0, 0) {}
-    Point(int p_x, int p_y) noexcept : SDL_Point(p_x, p_y) {}
+    Point(int p_x, int p_y) noexcept : SDL_Point{p_x, p_y} {}
     using SDL_Point::x;
     using SDL_Point::y;
     operator SDL_Point() const noexcept override;
