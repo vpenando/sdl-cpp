@@ -1,5 +1,5 @@
-#ifndef __KEYS_H__
-#define __KEYS_H__
+#ifndef __KEYBOARD_H__
+#define __KEYBOARD_H__
 
 // **********************
 // ** Standard library **
@@ -100,4 +100,4 @@ namespace sdl {
 
 } // namespace sdl
 
-#endif // __KEYS_H__
+#endif // __KEYBOARD_H__
