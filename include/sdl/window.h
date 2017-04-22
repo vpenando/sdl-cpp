@@ -74,9 +74,9 @@ namespace sdl{
     Window(std::string const& name, Rect const& rect, flag_t flags = 0u);
     Window(SDL_Window *window, unsigned renderer_flags = renderer::ACCELERATED);
     Size size() const noexcept;
-    void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
-    void blit(Texture const& texture, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
-    void blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const;
+    void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
+    void blit(Texture const& texture, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
+    void blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
     void draw_point(Point const& point);
     void draw_points(std::vector<Point> const& points);
     void draw_line(Point const& p1, Point const& p2);
