@@ -25,9 +25,15 @@ sdl::Surface::Surface(Surface const& surface) {
   copy_surface(surface);
 }
 
+sdl::Surface::~Surface() {
+  if (ptr_) {
+    SDL_FreeSurface(ptr_);
+  }
+}
+
 sdl::Surface& sdl::Surface::operator=(Surface const& surface) {
   Surface copy(surface);
-  std::swap(*this, copy);
+  std::swap(this->ptr_, copy.ptr_);
   return *this;
 }
 
