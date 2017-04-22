@@ -27,6 +27,7 @@ namespace sdl{
   public:
     Surface(SDL_Surface *ptr);
     Surface(Surface const& surface);
+    ~Surface();
     Surface& operator=(Surface const& surface);
     Size size() const noexcept;
     operator SDL_Surface*() const noexcept;
