@@ -46,7 +46,7 @@ sdl::Size sdl::Window::size() const noexcept {
   return size_;
 }
 
-void sdl::Window::blit(Surface const& surface, Point const& coords, NullableRect const& src_rect) const {
+void sdl::Window::blit(Surface const& surface, Point const& coords, NullableRect const& src_rect) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
   const Texture texture{SDL_CreateTextureFromSurface(renderer_, surface)};
@@ -60,7 +60,7 @@ void sdl::Window::blit(Surface const& surface, Point const& coords, NullableRect
   }*/
 }
 
-void sdl::Window::blit(Texture const& texture, Point const& coords, NullableRect const& src_rect) const {
+void sdl::Window::blit(Texture const& texture, Point const& coords, NullableRect const& src_rect) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
   int w, h;
@@ -75,7 +75,7 @@ void sdl::Window::blit(Texture const& texture, Point const& coords, NullableRect
   }
 }
 
-void sdl::Window::blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect) const {
+void sdl::Window::blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
   drawable.on_window(*this, coords, src_rect);
