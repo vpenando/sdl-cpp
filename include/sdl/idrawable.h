@@ -32,7 +32,7 @@ namespace sdl {
 
   private:
     // Will be called in Window::blit(IDrawable const&)
-    virtual void on_window(Window const& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const = 0;
+    virtual void on_window(Window& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const = 0;
   };
 
 } // namespace sdl
