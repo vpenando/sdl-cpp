@@ -19,13 +19,6 @@
 namespace sdl{
   namespace api{
 
-    class IUpdatable{
-    public:
-      IUpdatable() = default;
-      virtual ~IUpdatable() = default;
-      virtual void update() = 0;
-    };
-
     template<class T>
     class IHandler : public IUpdatable{
     public:
