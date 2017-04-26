@@ -23,6 +23,7 @@
 #include <sdl/size.h>               // sdl::Size
 #include <sdl/surface.h>            // sdl::Surface
 #include <sdl/point.h>              // sdl::Point
+#include <sdl/api/iupdatable.h>     // sdl::api::IUpdatable
 #include <sdl/api/memory/wrapper.h> // sdl::api::memory::Wrapper
 
 namespace sdl{
@@ -63,7 +64,10 @@ namespace sdl{
   };
 
   // SDL_Window wrapper
-  class Window final : public api::BaseWindow{
+  class Window final :
+    public api::BaseWindow,
+    public sdl::api::IUpdatable
+  {
     using flag_t = Uint32;
     using NullableRect = api::Nullable<Rect>;
   public:
@@ -80,7 +84,7 @@ namespace sdl{
     void draw_point(Point const& point);
     void draw_points(std::vector<Point> const& points);
     void draw_line(Point const& p1, Point const& p2);
-    void update();
+    void update() override;
     
   private:
     Size size_;
