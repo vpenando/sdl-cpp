@@ -14,7 +14,7 @@
 // **********************
 // ** Custom lib files **
 // **********************
-// -
+#include <sdl/api/iupdatable.h>
 
 namespace sdl{
   namespace api{
