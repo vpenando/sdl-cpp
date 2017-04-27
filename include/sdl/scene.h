@@ -36,15 +36,12 @@ namespace sdl {
   public:
     Scene() = default;
     virtual ~Scene() = default;
-
     template<class T, class ...Args>
     T& add(Args... args);
-
-    void update() override;
     using ecs::BaseComponent::get;
-    void on_window(Window& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const override;
-
+    void update() override;
   private:
+    void on_window(Window& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const override;
     std::vector<api::IUpdatable *> updatables_;
     std::vector<IDrawable *> drawables_;
   };
