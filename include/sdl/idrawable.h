@@ -23,6 +23,7 @@ namespace sdl {
   class Window;
   
   class IDrawable {
+    friend class Scene;
     friend class Window;
   protected:
     using NullableRect = api::Nullable<Rect>;
