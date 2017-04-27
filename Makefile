@@ -21,8 +21,12 @@ LDFLAGS = -lm $(SDL_LDFLAGS)
 #SOURCES=src/*.cpp src/sdl/*.cpp
 INCLUDE=./include
 OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o window.o
+SDL_IMG_PATH=tier/SDL2-image
 
 all: $(OBJ)
+	cd $(SDL_IMG_PATH)
+	make
+	cd ../..
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
   
 clean:
