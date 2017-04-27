@@ -86,6 +86,6 @@ namespace sdl {
     Size size_;
   };
   
-} // sdl::BoxCollider
+} // namespace sdl
 
 #endif // __BOXCOLLIDER_H__
