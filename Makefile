@@ -30,7 +30,7 @@ all: $(OBJ) sdl_img
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
   
 sdl_img:
-	$(CC) $(SDL_IMG_PATH)/*.c -o $(SDL_IMG_OBJ)
+	$(CC) $(SDL_IMG_PATH)/*.c $(SDL_CFLAGS) $(SDL_LDFLAGS) -o $(SDL_IMG_OBJ)
 	ar -q sdl_img.a $(SDL_IMG_OBJ)	
 
 clean:
