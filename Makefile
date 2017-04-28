@@ -1,4 +1,5 @@
 TARGET = sdltest
+CC=gcc
 CXX = clang++-3.6
 SDL_CFLAGS = $(shell sdl2-config --cflags)
 SDL_LDFLAGS = $(shell sdl2-config --libs)
@@ -21,10 +22,17 @@ LDFLAGS = -lm $(SDL_LDFLAGS)
 #SOURCES=src/*.cpp src/sdl/*.cpp
 INCLUDE=./include
 OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o window.o
+# SDL-image
+SDL_IMG_PATH=tier/SDL2-image
+SDL_IMG_OBJ=sdl_img.o
 
-all: $(OBJ)
+all: $(OBJ) sdl_img
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
   
+sdl_img:
+	$(CC) $(SDL_IMG_PATH)/*.c -o $(SDL_IMG_OBJ)
+	ar -q sdl_img.a $(SDL_IMG_OBJ)	
+
 clean:
 	rm -rf *.o
 	rm $(TARGET)
