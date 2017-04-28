@@ -27,11 +27,11 @@ all: $(OBJ) sdl_img
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
   
 sdl_img:
-	cd tier/SDL2-image
+	cd tier
 	git clone https://github.com/SDL-mirror/SDL_image.git
 	./configure
 	make
-	cd ../..
+	cd ..
 
 clean:
 	rm -rf *.o
