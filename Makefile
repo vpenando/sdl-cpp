@@ -25,13 +25,6 @@ OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o
 
 all: $(OBJ) sdl_img
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
-  
-sdl_img:
-	cd tier
-	git clone https://github.com/SDL-mirror/SDL_image.git
-	./configure
-	make
-	cd ..
 
 clean:
 	rm -rf *.o
