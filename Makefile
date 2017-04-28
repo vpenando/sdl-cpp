@@ -23,7 +23,7 @@ LDFLAGS = -lm $(SDL_LDFLAGS)
 INCLUDE=./include
 OBJ=main.o color.o event.o keyboard.o mouse.o point.o rect.o sdl_cpp.o surface.o window.o
 
-all: $(OBJ) sdl_img
+all: $(OBJ)
 	$(CXX) -o $(TARGET) $(OBJ) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS)
 
 clean:
