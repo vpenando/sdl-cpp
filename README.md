@@ -65,7 +65,7 @@ public:
 private:
   // Inherited from IDrawable
   void on_window(
-    sdl::Window const& window,
+    sdl::Window& window,
     sdl::Point const& coords,
     NullableRect const& src_rect = sdl::api::NULL_VAL) const override
   {
