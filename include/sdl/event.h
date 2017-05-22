@@ -31,7 +31,15 @@ namespace sdl {
 
   namespace api {
     using BaseHandlerComponent = ecs::api::RootComponent<sdl::api::IUpdatable>;
-  }
+  } // namespace sdl::api
+  
+  namespace keyboard {
+    using Press = sdl::KeyCode;
+  } // namespace sdl::keyboard
+  
+  namespace mouse {
+    using Click = sdl::ClickCode;
+  } // namespace sdl::mouse
 
   class EventHandler final : private api::BaseHandlerComponent {
     using Action = std::function<void(void)>;
@@ -40,15 +48,23 @@ namespace sdl {
     using api::BaseHandlerComponent::get;
     void update();
     void on_quit(Action const& fun);
-    void on_press(KeyCode code, Action const& fun);
+    
+    template<keyboard::Press code>
+    void on(Action const& fun) { on_press(code, fun); }
+    
+    template<mouse::Click code>
+    void on(Action const& fun) { on_click(code, fun); }     
 
   private:
+    void on_press(KeyCode code, Action const& fun);
+    void on_click(ClickCode code, Action const& fun);
     void handle_actions();
     KeyboardStateHandler& keyboard_handler_;
     MouseStateHandler& mouse_handler_;
     std::function<void(void)> on_quit_;
     bool on_quit_defined_;
-    std::map<KeyCode, Action> actions_;
+    std::map<KeyCode, Action> key_actions_;
+    std::map<ClickCode, Action> click_actions_;
   };
 
 } // namespace sdl
