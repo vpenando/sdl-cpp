@@ -48,16 +48,10 @@ namespace sdl {
     using api::BaseHandlerComponent::get;
     void update();
     void on_quit(Action const& fun);
-    
-    template<keyboard::Press code>
-    void on(Action const& fun) { on_press(code, fun); }
-    
-    template<mouse::Click code>
-    void on(Action const& fun) { on_click(code, fun); }     
-
-  private:
     void on_press(KeyCode code, Action const& fun);
     void on_click(ClickCode code, Action const& fun);
+    
+  private:
     void handle_actions();
     KeyboardStateHandler& keyboard_handler_;
     MouseStateHandler& mouse_handler_;
