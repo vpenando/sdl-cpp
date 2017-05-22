@@ -14,7 +14,7 @@ int main(int, char **){
     // Event handler
     sdl::EventHandler handler;
     handler.on_quit([&loop](){ loop = false; });
-    handler.on_press(sdl::KeyCode::A, [](){
+    handler.on<sdl::keyboard::Press::A>([](){
       std::cout << "Key A pressed" << std::endl;
     });
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
