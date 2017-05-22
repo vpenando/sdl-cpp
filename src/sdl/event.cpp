@@ -25,19 +25,29 @@ void sdl::EventHandler::update() {
   }
   keyboard_handler_.update();
   mouse_handler_.update();
-  if (actions_.size() > 0) {
+  if (key_actions_.size() > 0 || click_actions_.size() > 0) {
     handle_actions();
   }
 }
 
 void sdl::EventHandler::on_press(sdl::KeyCode code, Action const& fun) {
-  actions_.insert(std::pair<KeyCode, Action>(code, fun));
+  key_actions_.insert(std::pair<KeyCode, Action>(code, fun));
+}
+
+void sdl::EventHandler::on_click(ClickCode code, Action const& fun) {
+  click_actions_.insert(std::pair<ClickCode, Action>(code, fun));
 }
 
 void sdl::EventHandler::handle_actions() {
   const auto keyboard_state = keyboard_handler_.state();
-  for (auto& pair : actions_) {
+  for (auto& pair : key_actions_) {
     if (keyboard_state[pair.first].pressed) {
+      pair.second();
+    }
+  }
+  const auto mouse_state = mouse_handler_.state();
+  for (auto& pair : mouse_actions_) {
+    if (mouse_state.clicked(pair.first)) {
       pair.second();
     }
   }
