@@ -46,7 +46,7 @@ void sdl::EventHandler::handle_actions() {
     }
   }
   const auto mouse_state = mouse_handler_.state();
-  for (auto& pair : mouse_actions_) {
+  for (auto& pair : click_actions_) {
     if (mouse_state.clicked(pair.first)) {
       pair.second();
     }
