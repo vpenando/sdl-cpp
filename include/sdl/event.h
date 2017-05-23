@@ -32,14 +32,6 @@ namespace sdl {
   namespace api {
     using BaseHandlerComponent = ecs::api::RootComponent<sdl::api::IUpdatable>;
   } // namespace sdl::api
-  
-  namespace keyboard {
-    using Press = sdl::KeyCode;
-  } // namespace sdl::keyboard
-  
-  namespace mouse {
-    using Click = sdl::ClickCode;
-  } // namespace sdl::mouse
 
   class EventHandler final : private api::BaseHandlerComponent {
     using Action = std::function<void(void)>;
