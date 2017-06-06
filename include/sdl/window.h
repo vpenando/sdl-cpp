@@ -49,20 +49,6 @@ namespace sdl{
     }
   };
 
-  struct WindowProperties final{
-    using flag_t = Uint32;
-    WindowProperties(std::string const& n, Size const& s, flag_t f, int rf,
-      api::Nullable<Point> np = api::NULL_VAL,
-      api::Nullable<SDL_Surface*> ns = api::NULL_VAL);
-    ~WindowProperties();
-    std::string name;
-    Size size;
-    flag_t flags;
-    int renderer_flags;
-    api::Nullable<Point> pos;
-    api::Nullable<SDL_Surface*> icon;
-  };
-
   // SDL_Window wrapper
   class Window final :
     public api::BaseWindow,
@@ -70,6 +56,7 @@ namespace sdl{
   {
     using flag_t = Uint32;
     using NullableRect = api::Nullable<Rect>;
+    using NullableColor = api::Nullable<Color>;
   public:
     // Ctor
     using api::BaseWindow::BaseWindow;
@@ -81,12 +68,17 @@ namespace sdl{
     void blit(Surface const& surface, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
     void blit(Texture const& texture, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
     void blit(IDrawable const& drawable, Point const& coords, NullableRect const& src_rect = api::NULL_VAL);
-    void draw_point(Point const& point);
-    void draw_points(std::vector<Point> const& points);
-    void draw_line(Point const& p1, Point const& p2);
+    void draw_point(Point const& point, NullableColor const& color = api::NULL_VAL);
+    void draw_points(std::vector<Point> const& points, NullableColor const& color = api::NULL_VAL);
+    void draw_line(Point const& p1, Point const& p2, NullableColor const& color = api::NULL_VAL);
     void update() override;
     
   private:
+    //template<class T, class Fun>
+    //void draw_something(T const& val, NullableColor const& color = api::NULL_VAL, Fun const& fun);
+    // => pre + renderer color + fun(val) + renderer color + post
+    Color get_renderer_color() const;
+    void set_renderer_color(Color const& color);
     Size size_;
     Renderer renderer_;
   };
