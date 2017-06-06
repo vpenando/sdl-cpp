@@ -5,19 +5,6 @@
 
 namespace api = sdl::api;
 
-sdl::WindowProperties::WindowProperties(std::string const& n, sdl::Size const& s, flag_t f, int rf,
-  api::Nullable<Point> np, api::Nullable<SDL_Surface*> ns)
-  : name{n}, size{s}, flags{f}, renderer_flags{rf}, pos{np}, icon{ns} {}
-
-sdl::WindowProperties::~WindowProperties() {
-  if (icon) {
-    auto *ptr = icon.value();
-    SDL_FreeSurface(ptr);
-  }
-}
-
-// Window
-
 sdl::Window::Window(std::string const& name, Size const& size, flag_t flags)
   : Window(SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
     static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
@@ -124,6 +111,7 @@ void sdl::Window::draw_points(std::vector<sdl::Point> const& points, NullableCol
 void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2, NullableColor const& color) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
+  Color renderer_color{};
   if (color) {
     renderer_color = get_renderer_color();
     set_renderer_color(color.value());
