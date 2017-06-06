@@ -20,15 +20,15 @@ sdl::WindowProperties::~WindowProperties() {
 
 sdl::Window::Window(std::string const& name, Size const& size, flag_t flags)
   : Window(SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                            static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
+    static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(std::string const& name, Point const& coords, Size const& size, flag_t flags)
   : Window(SDL_CreateWindow(name.c_str(), coords.x, coords.y,
-                            static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
+    static_cast<int>(size.w), static_cast<int>(size.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(std::string const& name, Rect const& rect, flag_t flags)
   : Window(SDL_CreateWindow(name.c_str(), rect.x, rect.y,
-                            static_cast<int>(rect.w), static_cast<int>(rect.h), flags), renderer::ACCELERATED){}
+    static_cast<int>(rect.w), static_cast<int>(rect.h), flags), renderer::ACCELERATED){}
 
 sdl::Window::Window(SDL_Window *window, unsigned renderer_flags)
   : api::BaseWindow(window), renderer_(SDL_CreateRenderer(*this, -1, renderer_flags)) {
@@ -81,16 +81,24 @@ void sdl::Window::blit(IDrawable const& drawable, Point const& coords, NullableR
   drawable.on_window(*this, coords, src_rect);
 }
 
-void sdl::Window::draw_point(sdl::Point const& point) {
+void sdl::Window::draw_point(sdl::Point const& point, NullableColor const& color) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
+  Color renderer_color{};
+  if (color) {
+    renderer_color = get_renderer_color();
+    set_renderer_color(color.value());
+  }
   const auto ret = SDL_RenderDrawPoint(renderer_, point.x, point.y);
+  if (color) {
+    set_renderer_color(renderer_color);
+  }
   if (ret != 0) {
     throw std::runtime_error{SDL_GetError()};
   }
 }
 
-void sdl::Window::draw_points(std::vector<sdl::Point> const& points) {
+void sdl::Window::draw_points(std::vector<sdl::Point> const& points, NullableColor const& color) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
   const auto size = points.size();
@@ -99,16 +107,31 @@ void sdl::Window::draw_points(std::vector<sdl::Point> const& points) {
   raw_points[i] = points[i];
   }*/
   std::copy(points.begin(), points.end(), raw_points.begin());
+  Color renderer_color{};
+  if (color) {
+    renderer_color = get_renderer_color();
+    set_renderer_color(color.value());
+  }
   const auto ret = SDL_RenderDrawPoints(renderer_, raw_points.data(), static_cast<int>(raw_points.size()));
+  if (color) {
+    set_renderer_color(renderer_color);
+  }
   if (ret != 0) {
     throw std::runtime_error{SDL_GetError()};
   }
 }
 
-void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2) {
+void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2, NullableColor const& color) {
   assert(*this && "Null window");
   assert(renderer_ && "Null renderer");
+  if (color) {
+    renderer_color = get_renderer_color();
+    set_renderer_color(color.value());
+  }
   const auto ret = SDL_RenderDrawLine(renderer_, p1.x, p1.y, p2.x, p2.y);
+  if (color) {
+    set_renderer_color(renderer_color);
+  }
   if (ret != 0) {
     throw std::runtime_error{SDL_GetError()};
   }
@@ -117,4 +140,20 @@ void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2) {
 void sdl::Window::update() {
   SDL_RenderPresent(renderer_);
   SDL_RenderClear(renderer_);
+}
+
+Color sdl::Window::get_renderer_color() const {
+  Color color{};
+  const auto ret = SDL_GetRenderDrawColor(renderer_, &color.r, &color.g, &color.b, &color.a);
+  if (ret != 0) {
+    throw std::runtime_error{SDL_GetError()};
+  }
+  return color;
+}
+
+void sdl::Window::set_renderer_color(Color const& color) {
+  const auto ret = SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
+  if (ret != 0) {
+    throw std::runtime_error{SDL_GetError()};
+  }
 }
