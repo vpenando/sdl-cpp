@@ -130,7 +130,8 @@ void sdl::Window::update() {
   SDL_RenderClear(renderer_);
 }
 
-Color sdl::Window::get_renderer_color() const {
+sdl::Color sdl::Window::get_renderer_color() const {
+  assert(renderer_ && "Null renderer");
   Color color{};
   const auto ret = SDL_GetRenderDrawColor(renderer_, &color.r, &color.g, &color.b, &color.a);
   if (ret != 0) {
@@ -140,6 +141,7 @@ Color sdl::Window::get_renderer_color() const {
 }
 
 void sdl::Window::set_renderer_color(Color const& color) {
+  assert(renderer_ && "Null renderer");
   const auto ret = SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
   if (ret != 0) {
     throw std::runtime_error{SDL_GetError()};
