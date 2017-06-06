@@ -3,7 +3,7 @@
 #include <algorithm> // std::copy
 #include <stdexcept> // std::runtime_error
 
-// WindowProperties
+namespace api = sdl::api;
 
 sdl::WindowProperties::WindowProperties(std::string const& n, sdl::Size const& s, flag_t f, int rf,
   api::Nullable<Point> np, api::Nullable<SDL_Surface*> ns)
