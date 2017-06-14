@@ -18,8 +18,8 @@
 #include <sdl/size.h>               // sdl::Size
 #include <sdl/api/memory/wrapper.h> // sdl::api::memory::Wrapper
 
-namespace sdl{
-  namespace api{
+namespace sdl {
+  namespace api {
     using BaseSurface = memory::Wrapper<SDL_Surface, SDL_FreeSurface>;
   } // namespace sdl::api
 
@@ -37,7 +37,7 @@ namespace sdl{
   };
 
   template<class Function, class ...Args>
-  Surface make_surface(Function f, Args... args){
+  Surface make_surface(Function f, Args... args) {
     auto ptr = f(args...);
     if (!ptr) {
       throw std::runtime_error{SDL_GetError()};
@@ -45,9 +45,9 @@ namespace sdl{
     return Surface(ptr);
   }
   
-  auto const load_bmp = [](std::string const& filename) {
-    return make_surface([](auto const& f) { return SDL_LoadBMP(f.c_str());}, filename);
-  };
+  inline Surface load_bmp(std::string const& filename) {
+    return make_surface([&](auto const& f) { return SDL_LoadBMP(f.c_str()); }, filename);
+  }
 
 } // namespace sdl
 
