@@ -11,7 +11,7 @@ foo(window); // Ok!
 ```
 
 # Build status by branch
-master | dev (coming soon)
+master | dev
 -------|------------------
 [![Build Status](https://api.travis-ci.org/tyr-sl3/sdl-cpp.svg?branch=master)](https://travis-ci.org/tyr-sl3/sdl-cpp?branch=master) | [![Build Status](https://api.travis-ci.org/tyr-sl3/sdl-cpp.svg?branch=dev)](https://travis-ci.org/tyr-sl3/sdl-cpp?branch=dev)
 
