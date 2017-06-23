@@ -33,7 +33,7 @@ namespace sdl {
     using BaseHandlerComponent = ecs::api::RootComponent<sdl::api::IUpdatable>;
   } // namespace sdl::api
 
-  class EventHandler final : private api::BaseHandlerComponent {
+  class EventHandler : private api::BaseHandlerComponent {
     using Action = std::function<void(void)>;
   public:
     EventHandler();
@@ -42,6 +42,9 @@ namespace sdl {
     void on_quit(Action const& fun);
     void on_press(KeyCode code, Action const& fun);
     void on_click(ClickCode code, Action const& fun);
+   
+  protected:
+    using api::BaseHandlerComponent::add;
     
   private:
     void handle_actions();
