@@ -92,7 +92,14 @@ sdl::EventHandler handler;
 auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
 auto& keyboard_handler = handler.get<sdl::KeyboardStateHandler>();
 
+// You may bind an action to an event:
+handler.on_press(sdl::KeyCode::A, [](){
+  std::cout << "Key A pressed" << std::endl;
+});
+
 // ...
+
+// In your loop:
 
 // Mouse
 const auto mouse_state = mouse_handler.state();
@@ -101,14 +108,7 @@ const auto clicked = mouse_state.clicked(ClickCode::Left);
 // Keyboard
 const auto keyboard_state = keyboard_handler.state();
 const auto key_pressed = keyboard_state[KeyCode::A].pressed;
-
-// You may also bind an action to an event:
-handler.on_press(sdl::KeyCode::A, [](){
-  std::cout << "Key A pressed" << std::endl;
-});
-
 // ...
-// In your loop:
 handler.update();
 ```
 Note: Don't use `sdl::EventHandler::get<T>()` in your main loop because this operation is very heavy; prefer a reference as in the example.
