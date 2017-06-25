@@ -36,14 +36,14 @@ clean:
 main.o: src/main.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 
-color.o: src/color.cpp
+color.o: src/sdl/color.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 	
-exception.o: src/exception.cpp
+exception.o: src/sdl/exception.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 	
-point.o: src/point.cpp
+point.o: src/sdl/point.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 	
-rect.o: src/rect.cpp
+rect.o: src/sdl/rect.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
