@@ -19,6 +19,11 @@ namespace sdl {
   public:
     using Exception::Exception;
   };
+  
+  class RenderingError : public Exception {
+  public:
+    using Exception::Exception;
+  };
 
 } // namespace sdl
 
