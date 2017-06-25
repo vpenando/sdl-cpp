@@ -10,7 +10,7 @@ namespace sdl {
   public:
     explicit Exception(std::string const& what);
     virtual ~Exception() = default;
-    virtual const char *what() const override;
+    virtual const char *what() const noexcept override;
   private:
     std::string what_;
   };
