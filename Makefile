@@ -3,8 +3,8 @@ CC=gcc
 CXX = clang++-3.6
 SDL_CFLAGS = $(shell sdl2-config --cflags)
 SDL_LDFLAGS = $(shell sdl2-config --libs)
-CXXFLAGS = -std=c++14 -Wold-style-cast -Woverloaded-virtual -Wfloat-equal -Wwrite-strings -Wpointer-arith \
-			-Wconversion -Wshadow -Wredundant-decls -Winit-self -Wswitch-default -Wundef \
+CXXFLAGS = -std=c++14 -Wall -Werror -pedantic -Wold-style-cast -Woverloaded-virtual -Wfloat-equal -Wwrite-strings \
+			-Wpointer-arith -Wconversion -Wshadow -Wredundant-decls -Winit-self -Wswitch-default -Wundef \
 			-Winline -Wunused -Wuninitialized -D __SDL__ $(SDL_CFLAGS)
 			
 FLAGS_DEBUG = -O0 -g
