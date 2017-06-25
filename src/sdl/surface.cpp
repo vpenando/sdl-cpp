@@ -32,7 +32,7 @@ sdl::Surface::~Surface() {
 }
 
 sdl::Surface& sdl::Surface::operator=(Surface const& surface) {
-  Surface copy(surface);
+  auto copy(surface);
   std::swap(this->ptr_, copy.ptr_);
   return *this;
 }
@@ -56,7 +56,7 @@ void sdl::Surface::copy_surface(Surface const& surface) {
   ptr_ = SDL_CreateRGBSurface(0, surface.ptr_->w,
     surface.ptr_->h, surface.ptr_->format->BitsPerPixel, Mask::R, Mask::G, Mask::B, Mask::A);
   if (!ptr_) {
-    throw std::runtime_error{"Cannot create surface"};
+    throw sdl::LoadingError{"Cannot create surface"};
   }
   SDL_Rect rect;
   rect.x = 0;
@@ -65,6 +65,6 @@ void sdl::Surface::copy_surface(Surface const& surface) {
   rect.h = surface.ptr_->h;
   const auto ret = SDL_BlitSurface(surface.ptr_, &rect, ptr_, 0);
   if (ret != 0) {
-    throw std::runtime_error{SDL_GetError()};
+    throw sdl::LoadingError{SDL_GetError()};
   }
 }

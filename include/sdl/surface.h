@@ -15,6 +15,7 @@
 // ** Custom lib files **
 // **********************
 #include <sdl/ecs/ecs.h>            // sdl::api::Component
+#include <sdl/exception.h>          // sdl::Exception
 #include <sdl/size.h>               // sdl::Size
 #include <sdl/api/memory/wrapper.h> // sdl::api::memory::Wrapper
 
@@ -25,7 +26,7 @@ namespace sdl {
 
   class Surface final /*: public api::BaseSurface*/{
   public:
-    Surface(SDL_Surface *ptr);
+    explicit Surface(SDL_Surface *ptr);
     Surface(Surface const& surface);
     ~Surface();
     Surface& operator=(Surface const& surface);
@@ -40,7 +41,7 @@ namespace sdl {
   Surface make_surface(Function f, Args... args) {
     auto ptr = f(args...);
     if (!ptr) {
-      throw std::runtime_error{SDL_GetError()};
+      throw sdl::LoadingError{SDL_GetError()};
     }
     return Surface(ptr);
   }

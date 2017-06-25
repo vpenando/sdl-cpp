@@ -1,4 +1,5 @@
 #include <sdl/window.h>
+#include <sdl/exception.h>
 
 #include <algorithm> // std::copy
 #include <stdexcept> // std::runtime_error
@@ -58,7 +59,7 @@ void sdl::Window::blit(Texture const& texture, Point const& coords, NullableRect
   const SDL_Rect dest = {coords.x, coords.y, src.w, src.h};
   const auto ret = SDL_RenderCopy(renderer_, texture, &src, &dest);
   if (ret != 0) {
-    throw std::runtime_error{SDL_GetError()};
+    throw sdl::RenderingError{SDL_GetError()};
   }
 }
 
@@ -81,7 +82,7 @@ void sdl::Window::draw_point(sdl::Point const& point, NullableColor const& color
     set_renderer_color(renderer_color);
   }
   if (ret != 0) {
-    throw std::runtime_error{SDL_GetError()};
+    throw sdl::RenderingError{SDL_GetError()};
   }
 }
 
@@ -104,7 +105,7 @@ void sdl::Window::draw_points(std::vector<sdl::Point> const& points, NullableCol
     set_renderer_color(renderer_color);
   }
   if (ret != 0) {
-    throw std::runtime_error{SDL_GetError()};
+    throw sdl::RenderingError{SDL_GetError()};
   }
 }
 
@@ -121,7 +122,7 @@ void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2, Nullable
     set_renderer_color(renderer_color);
   }
   if (ret != 0) {
-    throw std::runtime_error{SDL_GetError()};
+    throw sdl::RenderingError{SDL_GetError()};
   }
 }
 
