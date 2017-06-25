@@ -35,18 +35,3 @@ clean:
 
 main.o: src/main.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
-
-color.o: src/sdl/color.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
-	
-event.o: src/sdl/event.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
-	
-exception.o: src/sdl/exception.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
-	
-point.o: src/sdl/point.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
-	
-rect.o: src/sdl/rect.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
