@@ -39,6 +39,9 @@ main.o: src/main.cpp
 color.o: src/sdl/color.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 	
+event.o: src/sdl/event.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
+	
 exception.o: src/sdl/exception.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 	
