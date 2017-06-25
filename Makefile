@@ -34,4 +34,4 @@ clean:
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
 
 main.o: src/main.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
