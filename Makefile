@@ -31,7 +31,7 @@ clean:
 	rm $(TARGET)
 	
 %.o: src/sdl/%.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE) $(SDL_CFLAGS) $(SDL_LDFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
 
 main.o: src/main.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
