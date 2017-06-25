@@ -19,6 +19,13 @@ namespace sdl {
   public:
     using Exception::Exception;
   };
+  
+  class RenderingError : public Exception {
+  public:
+    using Exception::Exception;
+  };
+  
+  // Todo - Add other exceptions
 
 } // namespace sdl
 
