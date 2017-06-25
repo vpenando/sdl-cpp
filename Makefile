@@ -35,3 +35,15 @@ clean:
 
 main.o: src/main.cpp
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
+
+color.o: src/color.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
+	
+exception.o: src/exception.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
+	
+point.o: src/point.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
+	
+rect.o: src/rect.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $<
