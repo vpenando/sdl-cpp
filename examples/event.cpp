@@ -4,6 +4,7 @@
 #include <sdl/sdl_cpp.h>
 
 int main(int, char **) {
+  sdl::Window window{"My Window", sdl::Size{500, 500}};
   sdl::EventHandler handler;
   bool loop = true;
   handler.on_quit([&loop](){ loop = false; });
@@ -17,5 +18,6 @@ int main(int, char **) {
     std::cout << "Mouse: (" << mouse_coords.x << ", " << mouse_coords.y << ")" << std::endl;
     // Update
     handler.update(); // Will also update mouse_handler
+    window.update();
   }
 }
