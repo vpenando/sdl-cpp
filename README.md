@@ -1,4 +1,4 @@
-# sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp) [![Coverage Status](https://coveralls.io/repos/github/tyr-sl3/sdl-cpp/badge.svg?branch=master)](https://coveralls.io/github/tyr-sl3/sdl-cpp?branch=master)
+# sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp)
 
 RAII-conform SDL wrapper written in C++14 by Vincent P. This wrapper is compatible with C SDL2 code; each RAII-conform SDL entity is convertible to its C equivalent:
 ```cpp
