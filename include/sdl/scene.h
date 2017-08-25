@@ -28,8 +28,17 @@ namespace sdl {
   template<class T>
   constexpr auto is_drawable_component = ecs::api::is_component<T> && std::is_base_of<IDrawable, T>::value;
 
+  class SceneComponent : public ecs::Component {
+  public:
+    SceneComponent() = default;
+    virtual ~SceneComponent() = default;
+  };
+  
+  template<class T>
+  constexpr auto is_scene_component = std::is_base_of<SceneComponent, T>::value;
+  
   class Scene :
-    private ecs::BaseComponent,
+    private ecs::RootComponent<SceneComponent>,
     public api::IUpdatable,
     public IDrawable
   {
@@ -48,6 +57,7 @@ namespace sdl {
 
   template<class T, class ...Args>
   T& Scene::add(Args... args) {
+    static_assert(is_scene_component<T>, "Not a SceneComponent");
     auto& elem = ecs::BaseComponent::add<T>(args...);
     if (is_updatable_component<T>) {
       updatables_.push_back(dynamic_cast<api::IUpdatable*>(&elem));
