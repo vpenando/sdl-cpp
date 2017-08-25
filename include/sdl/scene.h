@@ -38,16 +38,17 @@ namespace sdl {
   constexpr auto is_scene_component = std::is_base_of<SceneComponent, T>::value;
   
   class Scene :
-    private ecs::RootComponent<SceneComponent>,
+    private ecs::api::RootComponent<SceneComponent>,
     public api::IUpdatable,
     public IDrawable
   {
+    using Base = ecs::api::RootComponent<SceneComponent>;
   public:
     Scene() = default;
     virtual ~Scene() = default;
     template<class T, class ...Args>
     T& add(Args... args);
-    using ecs::BaseComponent::get;
+    using Base::get;
     void update() override;
   private:
     void on_window(Window& window, Point const& coords, NullableRect const& src_rect = api::NULL_VAL) const override;

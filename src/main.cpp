@@ -3,6 +3,8 @@
 #include <stdexcept>  // std::runtime_error
 
 #include <sdl/sdl_cpp.h>
+#include <sdl/scene.h>
+#include <sdl/screenshot.h>
 
 int main(int, char **){
   try{

@@ -50,8 +50,8 @@ namespace sdl {
 
   //! @class MouseStateHandler
   //! @brief Handles the mouse state
-  //! @extends IHandler
-  //! @extends Component
+  //! @extends api::IHandler
+  //! @extends ecs::Component
   class MouseStateHandler final :
     public api::IHandler<sdl::MouseState>,
     public ecs::Component
@@ -59,7 +59,7 @@ namespace sdl {
   public:
     //! @brief Ctor
     //! @param read_events True if we want the MouseStateHandler to pump events (SDL_PumpEvents)
-    MouseStateHandler(bool read_events = false);
+    explicit MouseStateHandler(bool read_events = false);
     //! @brief Update the mouse state
     void update() override;
     //! @brief   The mouse state
