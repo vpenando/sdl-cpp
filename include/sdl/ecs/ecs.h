@@ -57,7 +57,7 @@ namespace sdl {
          using ComponentPtr = typename std::vector<std::unique_ptr<ComponentType>>::value_type;
       public:
 
-         using std::vector<std::unique_ptr<ComponentType>>::value_type;
+         using typename std::vector<std::unique_ptr<ComponentType>>::value_type;
          RootComponent() = default;
          virtual ~RootComponent() = default;
 
