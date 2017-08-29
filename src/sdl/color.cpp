@@ -22,3 +22,8 @@ sdl::Color::operator SDL_Color() const noexcept{
   color.a = a;
   return color;
 }
+
+explicit sdl::operator u32() const noexcept{
+  const u32 rgba = (static_cast<u32>(r) << 24u) + (static_cast<u32>(g) << 16u) + (static_cast<u32>(b) << 8u) + a;
+  return rgba;
+}
