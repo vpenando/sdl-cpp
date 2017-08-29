@@ -40,6 +40,7 @@ namespace sdl {
     //! @param val The hexadecimal representation of a color
     Color(u32 val = 0) noexcept;
     operator SDL_Color() const noexcept override;
+    explicit operator u32() const noexcept;
     u8 r, g, b, a;
     const static Color BLACK; //!< The black color template
     const static Color RED;   //!< The red color template
