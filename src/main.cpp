@@ -19,6 +19,9 @@ int main(int, char **){
     handler.on_press(sdl::KeyCode::A, [](){
       std::cout << "Key A pressed" << std::endl;
     });
+    handler.on_press(sdl::KeyCode::Esc, []() {
+      sdl::quit();
+    });
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
     while(loop){
       // Example:
@@ -33,5 +36,5 @@ int main(int, char **){
   } catch(std::exception const& e){
     std::cout << "Error: " << e.what();
   }
-  SDL_Quit();
+  sdl::quit();
 }
