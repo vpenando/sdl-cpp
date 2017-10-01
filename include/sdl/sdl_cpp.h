@@ -47,6 +47,10 @@ namespace sdl{
     }
   }
 
+  inline void quit() {
+    SDL_Quit();
+  }
+
   class Context : api::NonCopyable, public ecs::BaseComponent{
   public:
     Context(unsigned flags = 0);
