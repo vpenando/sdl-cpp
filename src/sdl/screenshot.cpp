@@ -11,7 +11,7 @@ void sdl::save_bmp(sdl::Surface const& surface, std::string const& filename) {
   }
 }
 
-void sdl::take_screenshot(SDL_Window *window, std::string const& filename) {
+void sdl::take_screenshot(sdl::Window const& window, std::string const& filename) {
   assert(window && "Null window");
   save_bmp(sdl::to_surface(window), filename);
 }

@@ -11,7 +11,7 @@ namespace sdl {
 
   Surface to_surface(SDL_Window *window);
   void save_bmp(Surface const& surface, std::string const& filename);
-  void take_screenshot(SDL_Window *window, std::string const& filename);
+  void take_screenshot(sdl::Window const& window, std::string const& filename);
 
 } // namespace sdl
 
