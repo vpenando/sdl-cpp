@@ -1,4 +1,4 @@
-# sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/tyr-sl3/sdl-cpp.svg)](https://travis-ci.org/tyr-sl3/sdl-cpp)
+# sdl-cpp (Work in progress!) [![Build Status](https://travis-ci.org/vpenando/sdl-cpp.svg)](https://travis-ci.org/vpenando/sdl-cpp)
 
 RAII-conform SDL wrapper written in C++14 by Vincent P. This wrapper is compatible with C SDL2 code; each RAII-conform SDL entity is convertible to its C equivalent:
 ```cpp
@@ -13,7 +13,7 @@ foo(window); // Ok!
 # Build status by branch & OS
  OS / Branch | master | dev
 ---|-------|------------------
-**Linux** | [![Build Status](https://api.travis-ci.org/tyr-sl3/sdl-cpp.svg?branch=master)](https://travis-ci.org/tyr-sl3/sdl-cpp?branch=master) | [![Build Status](https://api.travis-ci.org/tyr-sl3/sdl-cpp.svg?branch=dev)](https://travis-ci.org/tyr-sl3/sdl-cpp?branch=dev)
+**Linux** | [![Build Status](https://api.travis-ci.org/vpenando/sdl-cpp.svg?branch=master)](https://travis-ci.org/vpenando/sdl-cpp?branch=master) | [![Build Status](https://api.travis-ci.org/vpenando/sdl-cpp.svg?branch=dev)](https://travis-ci.org/vpenando/sdl-cpp?branch=dev)
 **Window** | *Soon...* | *Soon...*
 
 # Conversion matrix:
