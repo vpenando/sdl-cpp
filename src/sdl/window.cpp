@@ -91,9 +91,6 @@ void sdl::Window::draw_points(std::vector<sdl::Point> const& points, NullableCol
   assert(renderer_ && "Null renderer");
   const auto size = points.size();
   std::vector<SDL_Point> raw_points(size);
-  /*for(auto i = 0u; i < size; i++){
-  raw_points[i] = points[i];
-  }*/
   std::copy(points.begin(), points.end(), raw_points.begin());
   Color renderer_color{};
   if (color) {
@@ -101,11 +98,11 @@ void sdl::Window::draw_points(std::vector<sdl::Point> const& points, NullableCol
     set_renderer_color(color.value());
   }
   const auto ret = SDL_RenderDrawPoints(renderer_, raw_points.data(), static_cast<int>(raw_points.size()));
-  if (color) {
-    set_renderer_color(renderer_color);
-  }
   if (ret != 0) {
     throw sdl::RenderingError{SDL_GetError()};
+  }
+  if (color) {
+    set_renderer_color(renderer_color);
   }
 }
 
@@ -118,11 +115,11 @@ void sdl::Window::draw_line(sdl::Point const& p1, sdl::Point const& p2, Nullable
     set_renderer_color(color.value());
   }
   const auto ret = SDL_RenderDrawLine(renderer_, p1.x, p1.y, p2.x, p2.y);
-  if (color) {
-    set_renderer_color(renderer_color);
-  }
   if (ret != 0) {
     throw sdl::RenderingError{SDL_GetError()};
+  }
+  if (color) {
+    set_renderer_color(renderer_color);
   }
 }
 

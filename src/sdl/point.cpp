@@ -1,6 +1,6 @@
 #include <sdl/point.h>
 
-sdl::Point::operator SDL_Point() const noexcept{
+sdl::Point::operator SDL_Point() const noexcept {
   SDL_Point point;
   point.x = x;
   point.y = y;

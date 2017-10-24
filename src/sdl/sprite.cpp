@@ -2,8 +2,9 @@
 #include <sdl/window.h>
 #include <iostream>
 
-sdl::SpriteAnimation::SpriteAnimation(unsigned framerate_ms) : framerate_(framerate_ms), idx_(0) {
-
+sdl::SpriteAnimation::SpriteAnimation(unsigned framerate_ms)
+  : framerate_(framerate_ms), idx_(0)
+{
 }
 
 sdl::SpriteAnimation::~SpriteAnimation() {
@@ -14,9 +15,9 @@ sdl::SpriteAnimation::~SpriteAnimation() {
   }
 }
 
-void sdl::SpriteAnimation::add_frame(SDL_Surface *frame, bool owns) {
+void sdl::SpriteAnimation::add_frame(sdl::Surface const& frame, bool owns) {
   assert(frame && "Null pointer");
-  frames_.push_back(std::pair<SDL_Surface *, bool>(frame, owns));
+  frames_.push_back(std::pair<sdl::Surface, bool>(frame, owns));
 }
 
 void sdl::SpriteAnimation::update() {
@@ -34,7 +35,7 @@ void sdl::SpriteAnimation::update() {
   }
 }
 
-SDL_Surface* sdl::SpriteAnimation::current() const {
+sdl::Surface sdl::SpriteAnimation::current() const {
   assert(idx_ < frames_.size() && "Out of bounds");
   assert(frames_[idx_].first && "Null pointer");
   return frames_[idx_].first;

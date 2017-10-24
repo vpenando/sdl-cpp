@@ -20,11 +20,8 @@
 #include <sdl/api/memory/wrapper.h> // sdl::api::memory::Wrapper
 
 namespace sdl {
-  namespace api {
-    using BaseSurface = memory::Wrapper<SDL_Surface, SDL_FreeSurface>;
-  } // namespace sdl::api
 
-  class Surface final /*: public api::BaseSurface*/{
+  class Surface final {
   public:
     explicit Surface(SDL_Surface *ptr);
     Surface(Surface const& surface);

@@ -14,12 +14,12 @@ void sdl::EventHandler::on_quit(Action const& fun) {
 }
 
 void sdl::EventHandler::update() {
-  if (!on_quit_defined_) {
+  /*if (!on_quit_defined_) {
     throw std::runtime_error{"You must bind an exit function by calling EventHandler::on_quit before using it"};
-  }
+  }*/
   sdl::Event e;
   while (SDL_PollEvent(&e)) {
-    if (e.type == SDL_QUIT) {
+    if (on_quit_defined_ && e.type == SDL_QUIT) {
       on_quit_();
     }
   }

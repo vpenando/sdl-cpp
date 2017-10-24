@@ -29,13 +29,13 @@ namespace sdl {
   public:
     explicit SpriteAnimation(unsigned framerate_ms);
     ~SpriteAnimation();
-    void add_frame(SDL_Surface *frame, bool owns = true);
+    void add_frame(sdl::Surface const& frame, bool owns = true);
     void update();
-    SDL_Surface* current() const;
+    sdl::Surface current() const;
   private:
     std::chrono::milliseconds framerate_;
     std::chrono::time_point<std::chrono::steady_clock> current_;
-    std::vector<std::pair<SDL_Surface *, bool>> frames_;
+    std::vector<std::pair<sdl::Surface, bool>> frames_;
     unsigned idx_;
   };
 

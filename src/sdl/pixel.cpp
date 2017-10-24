@@ -6,7 +6,7 @@
 inline sdl::u32 pixel_from_endian(sdl::u8 *ptr) {
   assert(ptr && "Null pointer");
 #if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
-  return p[0] << 16 | p[1] << 8 | p[2];
+  return ptr[0] << 16 | ptr[1] << 8 | p[2];
 #else
   return ptr[0] | ptr[1] << 8 | ptr[2] << 16;
 #endif

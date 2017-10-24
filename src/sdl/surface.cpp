@@ -17,7 +17,7 @@ enum Mask : Uint32 {
 #endif
 };
 
-sdl::Surface::Surface(SDL_Surface *ptr) : ptr_(ptr) /*api::BaseSurface(ptr)*/{
+sdl::Surface::Surface(SDL_Surface *ptr) : ptr_(ptr) {
   assert(ptr && "Null pointer");
 }
 
@@ -37,7 +37,7 @@ sdl::Surface& sdl::Surface::operator=(Surface const& surface) {
   return *this;
 }
 
-sdl::Size sdl::Surface::size() const noexcept{
+sdl::Size sdl::Surface::size() const noexcept {
   const auto width  = ptr_->w;
   const auto height = ptr_->h;
   assert(width  >= 0 && "Surface width must be superior than 0");
