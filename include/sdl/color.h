@@ -30,14 +30,9 @@ namespace sdl {
     public api::IConvertible<SDL_Color>,
     public ecs::Component
   {
-    //! @brief Ctor
-    //! @param red   The R value
-    //! @param green The G value
-    //! @param blue  The B value
-    //! @param alpha The A value
+    
     Color(u8 red, u8 green, u8 blue, u8 alpha = 255) noexcept;
-    //! @brief Ctor
-    //! @param val The hexadecimal representation of a color
+    
     Color(u32 val = 0) noexcept;
     operator SDL_Color() const noexcept override;
     u8 r, g, b, a;

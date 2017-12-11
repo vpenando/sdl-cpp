@@ -4,7 +4,8 @@
 // **********************
 // ** Standard library **
 //***********************
-#include <vector> // std::vector
+#include <type_traits> // std::underlying_type
+#include <vector>      // std::vector
 
 // **********************
 // ** SDL header files **
@@ -99,5 +100,8 @@ namespace sdl {
   };
 
 } // namespace sdl
+
+sdl::KeyCode operator|(sdl::KeyCode const&, sdl::KeyCode const&) = delete;
+sdl::KeyCode operator&(sdl::KeyCode const&, sdl::KeyCode const&) = delete;
 
 #endif // __KEYBOARD_H__

@@ -19,8 +19,8 @@ int main(int, char **){
     handler.on_press(sdl::KeyCode::A, [](){
       std::cout << "Key A pressed" << std::endl;
     });
-    handler.on_press(sdl::KeyCode::Esc, []() {
-      sdl::quit();
+    handler.on_press(sdl::KeyCode::Esc, [&loop]() {
+      loop = false;
     });
     auto& mouse_handler = handler.get<sdl::MouseStateHandler>();
     while(loop){

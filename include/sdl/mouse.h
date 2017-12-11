@@ -34,15 +34,10 @@ namespace sdl {
   //! @brief Represents the mouse state
   struct MouseState final {
   public:
-    //! @brief Ctor
-    //! @param coords The X and Y coords
-    //! @param state  The mouse state (returned by SDL_GetMouseState)
     MouseState(Point const& coords, Uint32 state) noexcept;
-    //! @brief Returns the mouse coords
     Point coords() const noexcept;
-    //! @brief Returns true if the button corresponding to the given clickcode is clicked
-    //! @param c The clickcode corresponding to the button we want to test
     bool clicked(ClickCode c) const noexcept;
+
   private:
     sdl::Point coords_;
     Uint32 state_;
@@ -57,19 +52,18 @@ namespace sdl {
     public ecs::Component
   {
   public:
-    //! @brief Ctor
-    //! @param read_events True if we want the MouseStateHandler to pump events (SDL_PumpEvents)
-    explicit MouseStateHandler(bool read_events = false);
-    //! @brief Update the mouse state
-    void update() override;
-    //! @brief   The mouse state
-    //! @returns A MouseState corresponding to the current mouse state
+    explicit MouseStateHandler(bool read_events = false);  
+    void update() override;   
     sdl::MouseState state() const override;
+
   private:
     bool read_events_;
     sdl::MouseState state_;
   };
 
 } // namespace sdl
+
+sdl::ClickCode operator|(sdl::ClickCode const&, sdl::ClickCode const&) = delete;
+sdl::ClickCode operator&(sdl::ClickCode const&, sdl::ClickCode const&) = delete;
 
 #endif // __MOUSE_H__
