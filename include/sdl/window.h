@@ -59,7 +59,6 @@ namespace sdl{
     using NullableColor = api::Nullable<Color>;
   public:
     // Ctor
-    using api::BaseWindow::BaseWindow;
     Window(std::string const& name, Size const& size, flag_t flags = 0u);
     Window(std::string const& name, Point const& coords, Size const& size, flag_t flags = 0u);
     Window(std::string const& name, Rect const& rect, flag_t flags = 0u);
@@ -74,9 +73,6 @@ namespace sdl{
     void update() override;
     
   private:
-    //template<class T, class Fun>
-    //void draw_something(T const& val, NullableColor const& color = api::NULL_VAL, Fun const& fun);
-    // => pre + renderer color + fun(val) + renderer color + post
     Color get_renderer_color() const;
     void set_renderer_color(Color const& color);
     Size size_;
