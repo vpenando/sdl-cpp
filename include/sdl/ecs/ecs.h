@@ -27,8 +27,7 @@ namespace sdl {
     // Basic component class
     class Component {
     protected:
-      Component() = default;
-    public:
+      /*    */ Component() = default;
       virtual ~Component() = default;
     };
 
@@ -50,65 +49,64 @@ namespace sdl {
 
       // Base component - Can add different component types deriving from ComponentType
       template<class ComponentType>
-      class RootComponent
-         : public ComponentType,
-         private std::vector<std::unique_ptr<ComponentType>>
+      class RootComponent :
+        public ComponentType,
+        private std::vector<std::unique_ptr<ComponentType>>
       {
-         using ComponentPtr = typename std::vector<std::unique_ptr<ComponentType>>::value_type;
+        using Base = std::vector<std::unique_ptr<ComponentType>>;
+      
       public:
+        using typename Base::value_type;
+        /*    */ RootComponent() = default;
+        virtual ~RootComponent() = default;
 
-         using typename std::vector<std::unique_ptr<ComponentType>>::value_type;
-         RootComponent() = default;
-         virtual ~RootComponent() = default;
+        using Base::size;
+        using Base::begin;
+        using Base::end;
 
-         using std::vector<std::unique_ptr<ComponentType>>::size;
-         using std::vector<std::unique_ptr<ComponentType>>::begin;
-         using std::vector<std::unique_ptr<ComponentType>>::end;
-         
+        template<class T, class ...Args>
+        T& add(Args&&... args) {
+          static_assert(is_component<T>, "Not a component");
+          emplace_back(new T(args...));
+          const auto& component = back();
+          assert(component && "Null pointer");
+          return *static_cast<T*>(component.get());
+        }
 
-         template<class T, class ...Args>
-         T& add(Args&&... args) {
-            static_assert(is_component<T>, "Not a component");
-            emplace_back(new T(args...));
-            const auto& component = back();
-            assert(component && "Null pointer");
-            return *static_cast<T*>(component.get());
-         }
+        template<class T>
+        T& get(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) {
+          static_assert(is_component<T>, "Not a component");
+          const auto it = get_iterator(f, begin(), end());
+          assert(it != end() && "Doesn't contain this component");
+          return *dynamic_cast<T*>(it->get());
+        }
 
-         template<class T>
-         T& get(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) {
-            static_assert(is_component<T>, "Not a component");
-            const auto it = get_iterator(f, begin(), end());
-            assert(it != end() && "Doesn't contain this component");
-            return *dynamic_cast<T*>(it->get());
-         }
+        template<class T>
+        bool contains(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) const {
+          static_assert(is_component<T>, "Not a component");
+          const auto it = get_iterator(f, begin(), end());
+          return it != end();
+        }
 
-         template<class T>
-         bool contains(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) const {
-            static_assert(is_component<T>, "Not a component");
-            const auto it = get_iterator(f, begin(), end());
-            return it != end();
-         }
-
-         template<class T>
-         void remove(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) {
-            static_assert(is_component<T>, "Not a component");
-            const auto it = std::remove_if(begin(), end(), [&](auto const& c) {
-               const auto ptr = dynamic_cast<T*>(c.get());
-               return ptr != nullptr && f(*ptr);
-            });
-            assert(it != end() && "Doesn't have this type of component");
-            erase(it, end());
-         }
+        template<class T>
+        void remove(UnaryPredicate<T> const& f = [](const T&) -> bool { return true; }) {
+          static_assert(is_component<T>, "Not a component");
+          const auto it = std::remove_if(begin(), end(), [&](auto const& c) {
+            const auto ptr = dynamic_cast<T*>(c.get());
+            return ptr != nullptr && f(*ptr);
+          });
+          assert(it != end() && "Doesn't have this type of component");
+          erase(it, end());
+        }
 
       private:
-         using std::vector<std::unique_ptr<ComponentType>>::emplace_back;
-         using std::vector<std::unique_ptr<ComponentType>>::back;
-         using std::vector<std::unique_ptr<ComponentType>>::erase;
+        using Base::emplace_back;
+        using Base::back;
+        using Base::erase;
       };
 
     } // namespace sdl::ecs::api
-     
+
     // Specialization
     using BaseComponent = api::RootComponent<Component>;
 
