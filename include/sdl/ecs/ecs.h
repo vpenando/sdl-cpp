@@ -26,7 +26,7 @@ namespace sdl {
 
     // Basic component class
     class Component {
-    protected:
+    public:
       /*    */ Component() = default;
       virtual ~Component() = default;
     };
